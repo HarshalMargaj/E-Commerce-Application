@@ -1,0 +1,36 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	height: 60px;
+	align-items: center;
+	border-bottom: 1px solid #eeeef1;
+	padding: 8px 32px;
+}
+
+.header .menus {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.icon,
+.l {
+	text-decoration: none;
+	color: black;
+}
+
+.l:hover {
+	color: dodgerblue;
+}
+
+.icon {
+	color: black;
+	font-weight: 600;
+	font-size: 32px;
+}
+
+img {
+	display: flex;
+	align-items: center;
+	height: 70px;
+}
