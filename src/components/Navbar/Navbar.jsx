@@ -2,16 +2,35 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Nabar.css";
 import CartIcon from "./components/CartIcon";
-import Logo from "../../assets/logo.png";
-import Logo2 from "../../assets/logo2.png";
+import { FaSearch } from "react-icons/fa";
+import Tippy from "@tippyjs/react";
 
 const Navbar = () => {
+	const categoryDropdownContent = (
+		<div className="categoryDropdownContent">
+			<div>categories men women children</div>
+		</div>
+	);
+
 	return (
 		<div className="header">
-			<div>
+			<div className="brand-name">
 				<Link to={"/"} className="icon">
-					<img src={Logo} alt="" width={200} />
+					<div>TrendTreasure</div>
 				</Link>
+				<Tippy
+					content={categoryDropdownContent}
+					interactive={true}
+					placement="bottom-start"
+				>
+					<Link to={"/"} className="l">
+						<div>Categories</div>
+					</Link>
+				</Tippy>
+			</div>
+			<div className="searchbar">
+				<FaSearch />
+				<input type="text" placeholder="Search products" />
 			</div>
 			<div className="menus">
 				<Link to={"/"} className="l">
