@@ -1,0 +1,53 @@
+.footer-container {
+	padding: 60px;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.top {
+	display: flex;
+	justify-content: space-between;
+
+	gap: 100px;
+}
+
+.top div {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.top div h3 {
+	font-weight: 500;
+	color: dimgray;
+}
+
+.top div ul {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.top div ul li,
+.top div p {
+	font-size: 14px;
+	color: gray;
+}
+
+.bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.bottom .payments {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+}
+
+.bottom .payments img {
+	width: 50px;
+}

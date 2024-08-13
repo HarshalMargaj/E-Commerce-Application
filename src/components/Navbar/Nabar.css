@@ -28,7 +28,7 @@
 	border: 1px solid #eeeef1;
 	display: flex;
 	gap: 10px;
-	padding: 5px;
+	padding: 8px;
 	align-items: center;
 	border-radius: 10px;
 }
@@ -46,7 +46,11 @@
 .brand-name {
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap: 20px;
+}
+
+.icon {
+	color: #2879fe;
 }
 
 .categoryDropdownContent {
@@ -56,4 +60,10 @@
 	width: 200px;
 	border-radius: 10px;
 	padding: 10px;
+}
+
+.categories {
+	display: flex;
+	align-items: center;
+	gap: 5px;
 }

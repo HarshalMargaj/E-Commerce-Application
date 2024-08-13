@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Nabar.css";
+import Tippy from "@tippyjs/react";
+
 import CartIcon from "./components/CartIcon";
 import { FaSearch } from "react-icons/fa";
-import Tippy from "@tippyjs/react";
+import { MdKeyboardArrowDown } from "react-icons/md";
+
+import "./Nabar.css";
 
 const Navbar = () => {
 	const categoryDropdownContent = (
@@ -24,7 +27,9 @@ const Navbar = () => {
 					placement="bottom-start"
 				>
 					<Link to={"/"} className="l">
-						<div>Categories</div>
+						<div className="categories">
+							Categories <MdKeyboardArrowDown />
+						</div>
 					</Link>
 				</Tippy>
 			</div>
