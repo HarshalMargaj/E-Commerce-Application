@@ -1,0 +1,34 @@
+.cart-product {
+	border: 1px solid #eeeef1;
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	padding: 20px;
+}
+
+.cartimg img {
+	width: 100px;
+	height: 100px;
+}
+
+.cartpage {
+	padding: 40px;
+}
+
+.cartpage .left {
+	width: 60%;
+}
+
+.cartpage .right {
+	width: 40%;
+}
+
+.cart-prod-desc {
+	color: gray;
+}
+
+.cart-right {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}

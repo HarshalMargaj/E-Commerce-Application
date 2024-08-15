@@ -1,0 +1,55 @@
+.productdetail {
+	display: flex;
+	padding: 40px;
+}
+
+.productdetail .left {
+	display: flex;
+	padding: 20px;
+}
+.productdetail .left .img-nav {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.productdetail .left .img-nav img {
+	width: 100px;
+	height: 100px;
+}
+
+.productdetail .left .main-img img {
+	width: 500px;
+	height: 500px;
+}
+
+.productdetail .right {
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.addtocartbutton button {
+	background: #2879fe;
+	color: white;
+	width: 200px;
+	border: none;
+	padding: 8px 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	border-radius: 5px;
+}
+
+.addtowishlist {
+	color: #2879fe;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.about {
+	color: gray;
+}

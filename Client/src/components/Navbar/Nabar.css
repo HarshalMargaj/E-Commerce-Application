@@ -1,0 +1,91 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	height: 60px;
+	align-items: center;
+	border-bottom: 1px solid #eeeef1;
+	padding: 8px 32px;
+}
+
+.header .menus {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.icon,
+.l {
+	text-decoration: none;
+	color: black;
+}
+
+.l:hover {
+	color: dodgerblue;
+}
+
+.searchbar {
+	width: 40%;
+	border: 1px solid #eeeef1;
+	display: flex;
+	gap: 10px;
+	padding: 8px;
+	align-items: center;
+	border-radius: 10px;
+}
+
+.searchbar input {
+	width: 100%;
+	border: none;
+	outline: none;
+}
+
+.icon {
+	font-size: 32px;
+}
+
+.brand-name {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.icon {
+	color: #2879fe;
+}
+
+.categoryDropdownContent,
+.cartDropdownContent {
+	background-color: white;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	width: 200px;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.cartDropdownContent {
+	width: 500px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	font-size: 14px;
+}
+
+.categories {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.gotocartbutton {
+	display: flex;
+	justify-content: center;
+}
+
+.gotocartbutton .gotocart {
+	background: #2879fe;
+	color: white;
+	padding: 8px 12px;
+	border: none;
+	border-radius: 5px;
+	width: 100%;
+}
