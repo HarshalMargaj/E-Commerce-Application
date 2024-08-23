@@ -40,7 +40,7 @@ export default function CustomizedBadges({ cartItemsLength }) {
 			<div>
 				<div className="left">
 					{data.map(d => (
-						<div className="cart-product">
+						<div className="cart-product" key={d.id}>
 							<div className="cartimg">
 								<img src={d.image} alt="" />
 							</div>

@@ -3,16 +3,23 @@ import "./Card.css";
 import { Link } from "react-router-dom";
 
 const Card = ({ product }) => {
-	console.log(product);
 	return (
 		<Link to={`/product/${product.id}`}>
 			<div className="card">
-				<img src={product.image} alt="" width={300} height={300} />
+				<img
+					src={
+						import.meta.env.VITE_UPLOAD_URL +
+						product.attributes.product_image.data.attributes.url
+					}
+					alt=""
+					width={300}
+					height={300}
+				/>
 				<h3 style={{ color: "dimgray", fontWeight: "500" }}>
-					{product.name}
+					{product.attributes.product_name}
 				</h3>
-				<p>{product.description}</p>
-				<p>Price: ${product.price}</p>
+				<p>{product.attributes.product_description}</p>
+				<p>Price: ${product.attributes.product_price}</p>
 			</div>
 		</Link>
 	);

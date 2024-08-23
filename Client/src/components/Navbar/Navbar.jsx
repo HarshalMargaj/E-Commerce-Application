@@ -44,7 +44,7 @@ const Navbar = ({ cartItemsLength }) => {
 				<Link to={"/about"} className="l">
 					<div>About</div>
 				</Link>
-				<Link to={"/products"} className="l">
+				<Link to={"/products/:id"} className="l">
 					<div>Products</div>
 				</Link>
 				<Link to={"/contact"} className="l">

@@ -9,7 +9,8 @@ import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import Box from "@mui/material/Box";
 
-const Left = () => {
+const Left = ({ data }) => {
+	console.log(data);
 	function ValueLabelComponent(props) {
 		const { children, value } = props;
 
@@ -77,56 +78,20 @@ const Left = () => {
 		<div className="left-container">
 			<div className="category">
 				<h2>Category</h2>
-				<FormControlLabel
-					sx={{
-						".css-ahj2mt-MuiTypography-root": {
-							fontSize: 14,
-							fontWeight: 500,
-						},
-					}}
-					control={<Checkbox defaultChecked />}
-					label="Label"
-				/>
-				<FormControlLabel
-					sx={{
-						".css-ahj2mt-MuiTypography-root": {
-							fontSize: 14,
-							fontWeight: 500,
-						},
-					}}
-					control={<Checkbox defaultChecked />}
-					label="Label"
-				/>
-				<FormControlLabel
-					sx={{
-						".css-ahj2mt-MuiTypography-root": {
-							fontSize: 14,
-							fontWeight: 500,
-						},
-					}}
-					control={<Checkbox defaultChecked />}
-					label="Label"
-				/>
-				<FormControlLabel
-					sx={{
-						".css-ahj2mt-MuiTypography-root": {
-							fontSize: 14,
-							fontWeight: 500,
-						},
-					}}
-					control={<Checkbox defaultChecked />}
-					label="Label"
-				/>
-				<FormControlLabel
-					sx={{
-						".css-ahj2mt-MuiTypography-root": {
-							fontSize: 14,
-							fontWeight: 500,
-						},
-					}}
-					control={<Checkbox defaultChecked />}
-					label="Label"
-				/>
+				{data.map(label => (
+					<FormControlLabel
+						key={label.id}
+						sx={{
+							".css-ahj2mt-MuiTypography-root": {
+								fontSize: 14,
+								fontWeight: 500,
+								textTransform: "capitalize",
+							},
+						}}
+						control={<Checkbox defaultChecked />}
+						label={label.attributes.subCategory_name}
+					/>
+				))}
 			</div>
 			<div className="price-slider">
 				<h2>Price</h2>
