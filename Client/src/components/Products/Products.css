@@ -1,0 +1,45 @@
+.price-slider {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.top-bar {
+	padding: 20px 40px;
+	border-bottom: 1px solid #eeeef1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 20px;
+}
+
+.top-bar .sort-drop {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+}
+
+.top-bar .sort-drop .drop {
+	border: 1px solid #eeeef1;
+	width: 150px;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.sortByDropdownContent {
+	background-color: white;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.sortByDropdownContent .option {
+	padding: 5px 12px;
+	cursor: pointer;
+}
+
+.sortByDropdownContent .option:hover {
+	background-color: #dbdbffa2;
+	border-radius: 5px;
+}

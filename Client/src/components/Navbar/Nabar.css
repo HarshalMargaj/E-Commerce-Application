@@ -70,6 +70,10 @@
 	font-size: 14px;
 }
 
+.categoryDropdownContent {
+	width: 1300px;
+}
+
 .categories {
 	display: flex;
 	align-items: center;

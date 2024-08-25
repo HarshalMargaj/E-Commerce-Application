@@ -858,6 +858,9 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::sub-category.sub-category'
     >;
     type: Attribute.Enumeration<['featured', 'trending', 'normal']>;
+    product_rating: Attribute.Integer;
+    product_image_2: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    isLimitedTimeDeal: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

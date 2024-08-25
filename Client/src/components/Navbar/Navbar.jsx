@@ -5,13 +5,14 @@ import Tippy from "@tippyjs/react";
 import CartIcon from "./components/CartIcon";
 import { FaSearch } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import Categories from "../Home/components/Categories";
 
 import "./Nabar.css";
 
 const Navbar = ({ cartItemsLength }) => {
 	const categoryDropdownContent = (
 		<div className="categoryDropdownContent">
-			<div>categories men women children</div>
+			<Categories />
 		</div>
 	);
 
@@ -24,13 +25,12 @@ const Navbar = ({ cartItemsLength }) => {
 				<Tippy
 					content={categoryDropdownContent}
 					interactive={true}
-					placement="bottom-start"
+					placement="bottom"
+					offset={[-100, 40]}
 				>
-					<Link to={"/"} className="l">
-						<div className="categories">
-							Categories <MdKeyboardArrowDown />
-						</div>
-					</Link>
+					<div className="categories">
+						Categories <MdKeyboardArrowDown />
+					</div>
 				</Tippy>
 			</div>
 			<div className="searchbar">
@@ -43,9 +43,6 @@ const Navbar = ({ cartItemsLength }) => {
 				</Link>
 				<Link to={"/about"} className="l">
 					<div>About</div>
-				</Link>
-				<Link to={"/products/:id"} className="l">
-					<div>Products</div>
 				</Link>
 				<Link to={"/contact"} className="l">
 					<div>Contact</div>

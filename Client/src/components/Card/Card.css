@@ -5,3 +5,18 @@
 	color: gray;
 	width: 300px;
 }
+
+.link {
+	text-decoration: none;
+}
+
+.deal {
+	background-color: crimson;
+	color: white;
+	font-weight: 500;
+	width: 50%;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 14px;
+	text-align: center;
+}

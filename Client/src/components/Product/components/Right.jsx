@@ -4,20 +4,35 @@ import Rating from "./Rating";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa";
 
-const Right = () => {
+const Right = ({ data }) => {
 	return (
 		<div className="right">
-			<h2>product name</h2>
-			<div>
-				<Rating />
-			</div>
-			<div>$50</div>
+			<h2>{data.attributes.product_name}</h2>
 			<div style={{ color: "gray" }}>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-				repellendus aspernatur minus distinctio id facilis
-				exercitationem inventore fuga nesciunt laboriosam culpa odit
-				totam placeat deserunt ullam, sit minima vitae tenetur.
+				{data.attributes.product_description}
 			</div>
+			<div className="rating">
+				<Rating rating={data.attributes.product_rating} />
+				{data.attributes.product_rating}
+			</div>
+			<div className="price">
+				<div
+					style={{
+						display: "flex",
+						alignItems: "baseline",
+						gap: "10px",
+					}}
+				>
+					<div className="old-price">
+						${data.attributes.product_price + 60}
+					</div>
+					<div className="current-price">
+						${data.attributes.product_price}
+					</div>
+				</div>
+				<div className="discount">20% Off!</div>
+			</div>
+
 			<div>
 				<Quantity />
 			</div>

@@ -55,6 +55,23 @@
         "trending",
         "normal"
       ]
+    },
+    "product_rating": {
+      "type": "integer"
+    },
+    "product_image_2": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "isLimitedTimeDeal": {
+      "type": "boolean"
     }
   }
 }

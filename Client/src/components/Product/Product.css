@@ -6,6 +6,7 @@
 .productdetail .left {
 	display: flex;
 	padding: 20px;
+	gap: 20px;
 }
 .productdetail .left .img-nav {
 	display: flex;
@@ -52,4 +53,36 @@
 
 .about {
 	color: gray;
+}
+
+.rating {
+	display: flex;
+	gap: 5px;
+}
+
+.price {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+.price .old-price {
+	text-decoration: line-through;
+	color: dimgray;
+}
+
+.price .current-price {
+	font-weight: 500;
+	color: #2879fe;
+	font-size: 24px;
+}
+
+.discount {
+	background-color: red;
+	padding: 5px 12px;
+	width: 100px;
+	border-radius: 5px;
+	color: white;
+	font-weight: 500;
+	display: flex;
+	justify-content: center;
 }

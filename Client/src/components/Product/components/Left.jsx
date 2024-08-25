@@ -1,28 +1,34 @@
 import React, { useState } from "react";
-import product1 from "../../../assets/product1.jpg";
-import product2 from "../../../assets/product2.jpg";
 
-const Left = () => {
-	const [selectedImage, setSelectedImage] = useState(0);
-
-	const images = [product1, product2];
+const Left = ({ data }) => {
+	const [selectedImage, setSelectedImage] = useState("product_image");
 
 	return (
 		<div className="left">
 			<div className="img-nav">
 				<img
-					src={images[0]}
-					alt="product1"
-					onClick={() => setSelectedImage(0)}
+					src={
+						import.meta.env.VITE_UPLOAD_URL +
+						data.attributes.product_image.data.attributes.url
+					}
+					onClick={() => setSelectedImage("product_image")}
 				/>
 				<img
-					src={images[1]}
-					alt="product2"
-					onClick={() => setSelectedImage(1)}
+					src={
+						import.meta.env.VITE_UPLOAD_URL +
+						data.attributes.product_image_2.data.attributes.url
+					}
+					onClick={() => setSelectedImage("product_image_2")}
 				/>
 			</div>
 			<div className="main-img">
-				<img src={images[selectedImage]} alt="" />
+				<img
+					src={
+						import.meta.env.VITE_UPLOAD_URL +
+						data.attributes[selectedImage].data.attributes.url
+					}
+					alt=""
+				/>
 			</div>
 		</div>
 	);

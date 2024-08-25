@@ -1,16 +1,29 @@
-import React from "react";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Slider, { SliderThumb } from "@mui/material/Slider";
+import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
-import Box from "@mui/material/Box";
 
-const Left = ({ data }) => {
-	console.log(data);
+const Left = ({
+	data,
+	selectedSubcatsIds,
+	setSelectedSubcatsIds,
+	setMaxPrice,
+	maxPrice,
+	sort,
+	setSort,
+}) => {
+	const handleChange = e => {
+		const value = parseInt(e.target.value);
+		const isChecked = e.target.checked;
+
+		setSelectedSubcatsIds(
+			isChecked
+				? [...selectedSubcatsIds, value]
+				: selectedSubcatsIds.filter(item => item != value)
+		);
+	};
+
 	function ValueLabelComponent(props) {
 		const { children, value } = props;
 
@@ -75,30 +88,39 @@ const Left = ({ data }) => {
 		},
 	}));
 	return (
-		<div className="left-container">
+		<div className="left-container" style={{ position: "sticky", top: 20 }}>
 			<div className="category">
-				<h2>Category</h2>
+				<h2>Categories</h2>
 				{data.map(label => (
-					<FormControlLabel
-						key={label.id}
-						sx={{
-							".css-ahj2mt-MuiTypography-root": {
-								fontSize: 14,
-								fontWeight: 500,
-								textTransform: "capitalize",
-							},
+					<div
+						style={{
+							display: "flex",
+							alignItems: "center",
+							gap: "10px",
 						}}
-						control={<Checkbox defaultChecked />}
-						label={label.attributes.subCategory_name}
-					/>
+						key={label.id}
+					>
+						<input
+							type="checkbox"
+							id={label.id}
+							value={label.id}
+							onChange={handleChange}
+						/>
+						<label htmlFor={label.id}>
+							{label.attributes.subCategory_name}
+						</label>
+					</div>
 				))}
 			</div>
 			<div className="price-slider">
 				<h2>Price</h2>
 				<IOSSlider
 					aria-label="ios slider"
-					defaultValue={100}
+					min={0}
+					max={1000}
+					value={maxPrice}
 					valueLabelDisplay="on"
+					onChange={(event, newValue) => setMaxPrice(newValue)}
 				/>
 			</div>
 		</div>

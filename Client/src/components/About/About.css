@@ -1,0 +1,23 @@
+.about-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 40px 60px;
+}
+
+.about-container .about-title {
+	font-weight: 500;
+	font-size: 20px;
+	color: dimgray;
+}
+
+.about-container .about-des {
+	color: gray;
+	font-size: 14px;
+}
+
+.about-container > div {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
