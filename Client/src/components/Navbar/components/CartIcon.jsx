@@ -5,10 +5,12 @@ import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Tippy from "@tippyjs/react";
 import { Link } from "react-router-dom";
-import product1 from "../../../assets/product1.jpg";
 import Quantity from "../../Product/components/Quantity";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { removeProduct } from "../../../Redux/cartSlice";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 	"& .MuiBadge-badge": {
@@ -20,16 +22,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function CustomizedBadges({ cartItemsLength }) {
-	const data = [
-		{
-			id: 1,
-			name: "Classic Denim Jacket",
-			description:
-				"A timeless denim jacket with a relaxed fit, perfect for layering over any outfit.",
-			price: 79.99,
-			image: product1,
-		},
-	];
+	const products = useSelector(state => state.cart.products);
+	const dispatch = useDispatch();
+
 	const cartDropdownContent = (
 		<div className="cartDropdownContent">
 			<div className="gotocartbutton">
@@ -39,10 +34,16 @@ export default function CustomizedBadges({ cartItemsLength }) {
 			</div>
 			<div>
 				<div className="left">
-					{data.map(d => (
+					{products.map(d => (
 						<div className="cart-product" key={d.id}>
 							<div className="cartimg">
-								<img src={d.image} alt="" />
+								<img
+									src={
+										import.meta.env.VITE_UPLOAD_URL +
+										d.image
+									}
+									alt=""
+								/>
 							</div>
 							<div className="cart-right">
 								<div>
@@ -69,6 +70,9 @@ export default function CustomizedBadges({ cartItemsLength }) {
 											display: "flex",
 											alignItems: "center",
 										}}
+										onClick={() =>
+											dispatch(removeProduct(d.id))
+										}
 									>
 										<AiOutlineDelete color="red" />
 									</div>
@@ -100,7 +104,10 @@ export default function CustomizedBadges({ cartItemsLength }) {
 			offset={[-150, 10]}
 		>
 			<IconButton aria-label="cart">
-				<StyledBadge badgeContent={cartItemsLength} color="secondary">
+				<StyledBadge
+					badgeContent={products.length ? products.length : "0"}
+					color="secondary"
+				>
 					<ShoppingCartIcon />
 				</StyledBadge>
 			</IconButton>

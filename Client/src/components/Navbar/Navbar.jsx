@@ -6,6 +6,7 @@ import CartIcon from "./components/CartIcon";
 import { FaSearch } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Categories from "../Home/components/Categories";
+import { FaRegHeart } from "react-icons/fa";
 
 import "./Nabar.css";
 
@@ -47,6 +48,8 @@ const Navbar = ({ cartItemsLength }) => {
 				<Link to={"/contact"} className="l">
 					<div>Contact</div>
 				</Link>
+
+				<FaRegHeart />
 
 				<CartIcon cartItemsLength={cartItemsLength} />
 			</div>

@@ -3,8 +3,11 @@ import Quantity from "./Quantity";
 import Rating from "./Rating";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../Redux/cartSlice";
 
 const Right = ({ data }) => {
+	const dispatch = useDispatch();
 	return (
 		<div className="right">
 			<h2>{data.attributes.product_name}</h2>
@@ -37,7 +40,21 @@ const Right = ({ data }) => {
 				<Quantity />
 			</div>
 			<div className="addtocartbutton">
-				<button>
+				<button
+					onClick={() =>
+						dispatch(
+							addToCart({
+								id: data.id,
+								name: data.attributes.product_name,
+								price: data.attributes.product_price,
+								description:
+									data.attributes.product_description,
+								image: data.attributes.product_image.data
+									.attributes.url,
+							})
+						)
+					}
+				>
 					<FiShoppingCart /> Add to cart
 				</button>
 			</div>

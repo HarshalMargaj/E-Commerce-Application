@@ -4,25 +4,24 @@ import product1 from "../../assets/product1.jpg";
 import Quantity from "../Product/components/Quantity";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { removeProduct } from "../../Redux/cartSlice";
 
 const Cart = () => {
-	const data = [
-		{
-			id: 1,
-			name: "Classic Denim Jacket",
-			description:
-				"A timeless denim jacket with a relaxed fit, perfect for layering over any outfit.",
-			price: 79.99,
-			image: product1,
-		},
-	];
+	const products = useSelector(state => state.cart.products);
+	const dispatch = useDispatch();
+
 	return (
 		<div className="cartpage">
 			<div className="left">
-				{data.map(d => (
-					<div className="cart-product">
+				{products.map(d => (
+					<div className="cart-product" key={d.id}>
 						<div className="cartimg">
-							<img src={d.image} alt="" />
+							<img
+								src={import.meta.env.VITE_UPLOAD_URL + d.image}
+								alt=""
+							/>
 						</div>
 						<div className="cart-right">
 							<div>
@@ -49,6 +48,9 @@ const Cart = () => {
 										display: "flex",
 										alignItems: "center",
 									}}
+									onClick={() =>
+										dispatch(removeProduct(d.id))
+									}
 								>
 									<AiOutlineDelete color="red" />
 								</div>

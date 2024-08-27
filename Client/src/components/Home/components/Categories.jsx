@@ -1,52 +1,6 @@
-// import React from "react";
-import { Link } from "react-router-dom";
-
-// const Categories = () => {
-// 	return (
-// 		<div className="categories-sec">
-// 			<div>
-// 				<Link className="link" to="/products/1">
-// 					Men
-// 				</Link>
-// 			</div>
-// 			<div>
-// 				<Link className="link" to="/products/2">
-// 					Women
-// 				</Link>
-// 			</div>
-// 			<div>
-// 				<Link className="link" to="/products/3">
-// 					Children
-// 				</Link>
-// 			</div>
-// 			<div>
-// 				<Link className="link" to="/products/4">
-// 					Mobiles
-// 				</Link>
-// 			</div>
-// 			<div>
-// 				<Link className="link" to="/products/5">
-// 					Laptops
-// 				</Link>
-// 			</div>
-// 			<div>
-// 				<Link className="link" to="/products/6">
-// 					Books
-// 				</Link>
-// 			</div>
-// 			<div>
-// 				<Link className="link" to="/products/7">
-// 					Shoes
-// 				</Link>
-// 			</div>
-// 		</div>
-// 	);
-// };
-
-// export default Categories;
-
 import * as React from "react";
 import useFetch from "../../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 export default function ImageMasonry() {
 	const { data, isLoading, error } = useFetch(`/categories?populate=*`);
