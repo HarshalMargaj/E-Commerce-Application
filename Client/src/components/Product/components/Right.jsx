@@ -4,7 +4,11 @@ import Rating from "./Rating";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../../Redux/cartSlice";
+import {
+	addToCart,
+	addToWishlist,
+	removeWishlist,
+} from "../../../Redux/cartSlice";
 
 const Right = ({ data }) => {
 	const dispatch = useDispatch();
@@ -58,9 +62,26 @@ const Right = ({ data }) => {
 					<FiShoppingCart /> Add to cart
 				</button>
 			</div>
-			<div className="addtowishlist">
+			<div
+				className="addtowishlist"
+				onClick={() =>
+					dispatch(
+						addToWishlist({
+							id: data.id,
+							product_name: data.attributes.product_name,
+							product_price: data.attributes.product_price,
+							product_description:
+								data.attributes.product_description,
+							product_image:
+								data.attributes.product_image.data.attributes
+									.url,
+						})
+					)
+				}
+			>
 				<FaRegHeart /> Add to wishlist
 			</div>
+			<div onClick={() => dispatch(removeWishlist(data.id))}>remove</div>
 			<div className="about">
 				<div>Vender : Polo</div>
 				<div>Type: T-Shirt</div>

@@ -25,14 +25,36 @@ export default function CustomizedBadges({ cartItemsLength }) {
 	const products = useSelector(state => state.cart.products);
 	const dispatch = useDispatch();
 
+	const subtotal = () => {
+		let sum = 0;
+		products.forEach(element => {
+			sum += element.price;
+		});
+		return sum;
+	};
+
 	const cartDropdownContent = (
 		<div className="cartDropdownContent">
+			<div
+				style={{
+					textAlign: "center",
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "baseline",
+					gap: "10px",
+				}}
+			>
+				<div>Subtotal </div>
+				<div style={{ color: "crimson", fontSize: "20px" }}>
+					${subtotal()}
+				</div>
+			</div>
 			<div className="gotocartbutton">
 				<Link to={"/cart"} style={{ width: "100%" }}>
 					<button className="gotocart">Go to cart</button>
 				</Link>
 			</div>
-			<div>
+			<div className="scroll">
 				<div className="left">
 					{products.map(d => (
 						<div className="cart-product" key={d.id}>

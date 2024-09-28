@@ -12,6 +12,17 @@ const Cart = () => {
 	const products = useSelector(state => state.cart.products);
 	const dispatch = useDispatch();
 
+	const subtotal = () => {
+		let sum = 0;
+		products.forEach(element => {
+			console.log(element.product_price);
+			sum += element.price;
+		});
+		return sum;
+	};
+
+	const discount = () => products.length * 60; // Subtracting 20% from the subtotal
+
 	return (
 		<div className="cartpage">
 			<div className="left">
@@ -71,7 +82,29 @@ const Cart = () => {
 				))}
 			</div>
 			<div className="right">
-				<div className="cart-total"></div>
+				<div className="cart-total">
+					<div>
+						<div className="payment">Payment</div>
+						<div className="subtotal">
+							Subtotal item({products.length})
+							<div>${subtotal() + products.length * 60}</div>
+						</div>
+						<div className="cart-discount">
+							Discount
+							<div>-${discount()}</div>
+						</div>
+						<div className="subtotal">
+							Total
+							<div>${subtotal()}</div>
+						</div>
+						<div
+							className="gotocartbutton"
+							style={{ padding: "10px 12px" }}
+						>
+							<button className="gotocart">Proceed to buy</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

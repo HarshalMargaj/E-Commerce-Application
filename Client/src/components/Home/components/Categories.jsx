@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 export default function ImageMasonry() {
 	const { data, isLoading, error } = useFetch(`/categories?populate=*`);
-	console.log(data);
 	return (
 		<div className="categories-sec">
 			{data.map(item => (

@@ -93,3 +93,27 @@
 	border-radius: 5px;
 	width: 100%;
 }
+
+.scroll .left {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.scroll {
+	overflow-y: scroll;
+	/* min-height: 100px; */
+	max-height: 500px;
+}
+
+.welcome_msg {
+	color: #2879fe;
+}
+
+.signInBtn {
+	background: #2879fe;
+	color: white;
+	padding: 8px 12px;
+	border: none;
+	border-radius: 5px;
+}

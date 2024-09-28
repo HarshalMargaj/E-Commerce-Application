@@ -24,8 +24,6 @@ const Product = ({ cartItemsLength }) => {
 		return <div>No product details available.</div>;
 	}
 
-	console.log(data);
-
 	return (
 		<div className="productdetail" style={{ display: "flex" }}>
 			<div className="left">

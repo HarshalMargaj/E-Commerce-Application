@@ -9,9 +9,11 @@ import Navbar from "./components/Navbar/Navbar";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
+import Wishlist from "./components/Wishlist/Wishlist";
 
 const App = () => {
 	const [cartItemsLength, setCartItemsLenght] = useState(1);
+
 	return (
 		<Router>
 			<div>
@@ -42,6 +44,7 @@ const App = () => {
 							/>
 						}
 					/>
+					<Route path="/wishlist" element={<Wishlist />} />
 					<Route
 						path="/cart"
 						element={
