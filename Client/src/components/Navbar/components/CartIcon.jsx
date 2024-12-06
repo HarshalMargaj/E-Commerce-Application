@@ -24,7 +24,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 export default function CustomizedBadges() {
 	const products = useSelector(state => state.cart.products);
 	const jwt = sessionStorage.getItem("jwt");
-	console.log("cart products", products);
 	const dispatch = useDispatch();
 
 	const subtotal = () => {

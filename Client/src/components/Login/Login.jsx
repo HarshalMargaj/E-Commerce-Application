@@ -3,7 +3,7 @@ import axios from "axios";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { fetchUserCart } from "../../api/api";
+import { fetchUserCart, fetchUserWishlist } from "../../api/api";
 import { useDispatch } from "react-redux";
 import { setLoggedInUser } from "../../Redux/userSlice";
 
@@ -45,6 +45,7 @@ const Login = () => {
 			dispatch(setLoggedInUser({ user: loggedInUser, token: jwt }));
 
 			fetchUserCart(loggedInUser.id, jwt, dispatch);
+			fetchUserWishlist(loggedInUser.id, jwt, dispatch);
 			navigate("/");
 		} catch (err) {
 			setError(

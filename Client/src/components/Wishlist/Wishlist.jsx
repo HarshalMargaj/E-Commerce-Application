@@ -3,14 +3,17 @@ import { useSelector } from "react-redux";
 import { FiShoppingCart } from "react-icons/fi";
 import "./Wshlist.css";
 import { IoIosCloseCircle } from "react-icons/io";
-import { removeWishlist, addToCart } from "../../Redux/cartSlice";
 import { useDispatch } from "react-redux";
+import { addProdToCart, deleteWishlistProd } from "../../api/api";
+import { useNavigate } from "react-router-dom";
 
 const Wishlist = () => {
 	const wishlists = useSelector(state => state.cart.wishlists);
+	const user = useSelector(state => state.user.user);
+	const jwt = sessionStorage.getItem("jwt");
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-	console.log(wishlists);
 	return (
 		<div>
 			<div
@@ -33,7 +36,7 @@ const Wishlist = () => {
 			</div>
 			<div className="wishlist-container">
 				{wishlists.map(item => (
-					<div className="wishlist-card">
+					<div className="wishlist-card" key={item.id}>
 						<div>
 							<img
 								src={
@@ -69,15 +72,12 @@ const Wishlist = () => {
 						<div className="addtocartbutton">
 							<button
 								onClick={() =>
-									dispatch(
-										addToCart({
-											id: item.id,
-											name: item.product_name,
-											price: item.product_price,
-											description:
-												item.product_description,
-											image: item.product_image,
-										})
+									addProdToCart(
+										jwt,
+										user.id,
+										item.id,
+										navigate,
+										dispatch
 									)
 								}
 							>
@@ -86,7 +86,9 @@ const Wishlist = () => {
 						</div>
 						<div
 							className="closeicon"
-							onClick={() => dispatch(removeWishlist(item.id))}
+							onClick={() =>
+								deleteWishlistProd(item.id, jwt, dispatch)
+							}
 						>
 							<IoIosCloseCircle color="#eeeef2" size={25} />
 						</div>

@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * whishlist router
+ * wishlist router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::whishlist.whishlist');
+module.exports = createCoreRouter('api::wishlist.wishlist');

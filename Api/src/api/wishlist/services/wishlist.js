@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * whishlist service
+ * wishlist service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::whishlist.whishlist');
+module.exports = createCoreService('api::wishlist.wishlist');

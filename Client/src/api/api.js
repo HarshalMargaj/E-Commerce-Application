@@ -1,5 +1,10 @@
 import axios from "axios";
-import { addToCart, removeProduct } from "../Redux/cartSlice";
+import {
+	addToCart,
+	addToWishlist,
+	removeProduct,
+	removeWishlist,
+} from "../Redux/cartSlice";
 
 export const addProdToCart = async (
 	jwt,
@@ -52,27 +57,22 @@ export const addProdToCart = async (
 
 export const deleteCartItem = async (id, jwt, dispatch) => {
 	try {
-		// Ensure ID is valid
 		if (!id) {
 			throw new Error("Cart item ID is required");
 		}
-
-		// Make DELETE request to Strapi API
 		const response = await axios.delete(
 			`${import.meta.env.VITE_API_URL}/carts/${id}`,
 			{
 				headers: {
-					Authorization: `Bearer ${jwt}`, // Ensure jwt is valid
+					Authorization: `Bearer ${jwt}`,
 				},
 			}
 		);
 
 		console.log("Deleted cart item:", response.data);
 
-		// Update state by dispatching Redux action
 		dispatch(removeProduct(id));
 	} catch (error) {
-		// Log detailed error
 		if (error.response) {
 			console.log("Error response:", error.response.data);
 		} else {
@@ -94,14 +94,12 @@ export const fetchUserCart = async (userId, jwt, dispatch) => {
 			}
 		);
 
-		// Extract all carts for the user
 		const userCarts = response.data.data;
 
 		if (userCarts.length > 0) {
-			// Flatten and format the products from all carts
 			const products = userCarts.flatMap(cart =>
 				cart.attributes.products.data.map(product => ({
-					id: cart.id, // Product ID
+					id: cart.id,
 					name: product.attributes.product_name,
 					price: product.attributes.product_price,
 					description: product.attributes.product_description,
@@ -109,9 +107,107 @@ export const fetchUserCart = async (userId, jwt, dispatch) => {
 				}))
 			);
 
-			// Add each product individually to Redux state
 			products.forEach(product => {
-				dispatch(addToCart(product)); // Dispatch product one at a time
+				dispatch(addToCart(product));
+			});
+		}
+	} catch (error) {
+		console.error("Error fetching user cart:", error);
+	}
+};
+
+export const addProdToWishlist = async (userId, productId, jwt, dispatch) => {
+	try {
+		const data = {
+			data: {
+				products: productId,
+				users_permissions_user: userId,
+			},
+		};
+		const response = await axios.post(
+			`${
+				import.meta.env.VITE_API_URL
+			}/wishlists?[populate][products][populate]=*`,
+			data,
+			{
+				headers: {
+					Authorization: `Bearer ${jwt}`,
+				},
+			}
+		);
+
+		console.log(response.data);
+
+		const wishlistId = response.data.data.id;
+		const wishlistData = response.data.data.attributes.products.data[0];
+
+		dispatch(
+			addToWishlist({
+				id: wishlistId,
+				product_name: wishlistData.attributes.product_name,
+				product_price: wishlistData.attributes.product_price,
+				product_description:
+					wishlistData.attributes.product_description,
+				product_image:
+					wishlistData.attributes.product_image.data.attributes.url,
+			})
+		);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const deleteWishlistProd = async (id, jwt, dispatch) => {
+	try {
+		if (!id) {
+			throw new Error("Cart item ID is required");
+		}
+		const response = await axios.delete(
+			`${import.meta.env.VITE_API_URL}/wishlists/${id}`,
+			{
+				headers: {
+					Authorization: `Bearer ${jwt}`,
+				},
+			}
+		);
+
+		console.log("Deleted cart item:", response.data);
+
+		dispatch(removeWishlist(id));
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const fetchUserWishlist = async (userId, jwt, dispatch) => {
+	try {
+		const response = await axios.get(
+			`${
+				import.meta.env.VITE_API_URL
+			}/wishlists?filters[user_id][$eq]=${userId}&populate[products][populate]=*`,
+			{
+				headers: {
+					Authorization: `Bearer ${jwt}`,
+				},
+			}
+		);
+
+		const userWishlists = response.data.data;
+
+		if (userWishlists.length > 0) {
+			const products = userWishlists.flatMap(wishlist =>
+				cart.attributes.products.data.map(product => ({
+					id: wishlist.id,
+					product_name: product.attributes.product_name,
+					product_price: product.attributes.product_price,
+					product_description: product.attributes.product_description,
+					product_image:
+						product.attributes.product_image.data.attributes.url,
+				}))
+			);
+
+			products.forEach(product => {
+				dispatch(addToWishlist(product));
 			});
 		}
 	} catch (error) {

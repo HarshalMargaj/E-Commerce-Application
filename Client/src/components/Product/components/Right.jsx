@@ -4,9 +4,8 @@ import Rating from "./Rating";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { addToWishlist, removeWishlist } from "../../../Redux/cartSlice";
 import { useNavigate } from "react-router-dom";
-import { addProdToCart } from "../../../api/api";
+import { addProdToCart, addProdToWishlist } from "../../../api/api";
 
 const Right = ({ product }) => {
 	const dispatch = useDispatch();
@@ -63,24 +62,22 @@ const Right = ({ product }) => {
 			<div
 				className="addtowishlist"
 				onClick={() =>
-					dispatch(
-						addToWishlist({
-							id: product.id,
-							product_name: product.attributes.product_name,
-							product_price: product.attributes.product_price,
-							product_description:
-								product.attributes.product_description,
-							product_image:
-								product.attributes.product_image.data.attributes
-									.url,
-						})
-					)
+					// dispatch(
+					// 	addToWishlist({
+					// 		id: product.id,
+					// 		product_name: product.attributes.product_name,
+					// 		product_price: product.attributes.product_price,
+					// 		product_description:
+					// 			product.attributes.product_description,
+					// 		product_image:
+					// 			product.attributes.product_image.data.attributes
+					// 				.url,
+					// 	})
+					// )
+					addProdToWishlist(user.id, product.id, jwt, dispatch)
 				}
 			>
 				<FaRegHeart /> Add to wishlist
-			</div>
-			<div onClick={() => dispatch(removeWishlist(product.id))}>
-				remove
 			</div>
 			<div className="about">
 				<div>Vender : Polo</div>

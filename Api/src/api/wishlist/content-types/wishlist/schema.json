@@ -1,10 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "whishlists",
+  "collectionName": "wishlists",
   "info": {
-    "singularName": "whishlist",
-    "pluralName": "whishlists",
-    "displayName": "whishlist"
+    "singularName": "wishlist",
+    "pluralName": "wishlists",
+    "displayName": "wishlist",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -20,9 +21,6 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
-    },
-    "whishlist_quantity": {
-      "type": "integer"
     }
   }
 }
