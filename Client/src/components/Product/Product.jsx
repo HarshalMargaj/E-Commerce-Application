@@ -8,6 +8,7 @@ import useFetch from "../hooks/useFetch";
 const Product = ({ cartItemsLength }) => {
 	const pId = useParams().id;
 	const { data, isLoading, error } = useFetch(`/products/${pId}?populate=*`);
+	console.log("data from product", data);
 
 	if (isLoading) {
 		return <div>Loading...</div>; // Display a loading spinner or message
@@ -30,7 +31,7 @@ const Product = ({ cartItemsLength }) => {
 				<Left data={data} />
 			</div>
 			<div className="right">
-				<Right data={data} />
+				<Right product={data} />
 			</div>
 		</div>
 	);

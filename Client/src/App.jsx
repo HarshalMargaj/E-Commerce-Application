@@ -10,6 +10,8 @@ import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import Wishlist from "./components/Wishlist/Wishlist";
+import Login from "./components/Login/Login";
+import Signup from "./components/Signup/Signup";
 
 const App = () => {
 	const [cartItemsLength, setCartItemsLenght] = useState(1);
@@ -55,6 +57,8 @@ const App = () => {
 						}
 					/>
 					<Route path="*" element={<NotFound />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/signup" element={<Signup />} />
 				</Routes>
 				<Footer />
 			</div>

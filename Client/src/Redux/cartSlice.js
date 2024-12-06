@@ -8,7 +8,6 @@ export const cartSlice = createSlice({
 	},
 	reducers: {
 		addToCart: (state, action) => {
-			// if product already available in products array then dont add it again instead increase quantity
 			const item = state.products.find(
 				item => item.id === action.payload.id
 			);
@@ -46,7 +45,6 @@ export const cartSlice = createSlice({
 	},
 });
 
-// Action creators are generated for each case reducer function
 export const {
 	addToCart,
 	removeProduct,

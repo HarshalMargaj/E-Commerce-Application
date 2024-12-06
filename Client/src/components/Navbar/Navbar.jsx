@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Tippy from "@tippyjs/react";
 import CartIcon from "./components/CartIcon";
@@ -6,32 +6,32 @@ import { FaSearch } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Categories from "../Home/components/Categories";
 import { FaRegHeart } from "react-icons/fa";
-import {
-	SignedIn,
-	SignedOut,
-	useAuth,
-	useUser,
-	useClerk,
-	UserButton,
-} from "@clerk/clerk-react";
-
 import "./Nabar.css";
+import { resetCart } from "../../Redux/cartSlice";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../Redux/userSlice";
+import { useSelector } from "react-redux";
 
-const Navbar = ({ cartItemsLength }) => {
-	const { userId } = useAuth();
-	const { user } = useUser();
-	const { openSignIn } = useClerk();
-
-	useEffect(() => {
-		if (user) {
-			console.log("Logged in user ID:", userId);
-			console.log("User details:", user.username);
-		}
-	}, [user, userId]);
+const Navbar = () => {
+	const loginuser = useSelector(state => state.user.user);
+	const isLogin = sessionStorage.getItem("jwt") ? true : false;
+	const dispatch = useDispatch();
 
 	const categoryDropdownContent = (
 		<div className="categoryDropdownContent">
 			<Categories />
+		</div>
+	);
+
+	const logout = () => {
+		sessionStorage.clear();
+		dispatch(logoutUser());
+		dispatch(resetCart());
+	};
+
+	const profileDropdown = (
+		<div style={{ background: "white", padding: "10px" }}>
+			<div onClick={logout}>Log out</div>
 		</div>
 	);
 
@@ -61,20 +61,22 @@ const Navbar = ({ cartItemsLength }) => {
 					<FaRegHeart />
 				</Link>
 
-				<CartIcon cartItemsLength={cartItemsLength} />
+				<CartIcon />
 
-				{user && (
-					<div className="welcome_msg">Welcome, {user.username}</div>
+				{!isLogin ? (
+					<Link to={"/login"}>
+						<button>Login</button>
+					</Link>
+				) : (
+					<Tippy
+						content={profileDropdown}
+						interactive={true}
+						placement="bottom"
+						trigger="click"
+					>
+						<div>Hi, {loginuser && loginuser?.username}</div>
+					</Tippy>
 				)}
-				<SignedOut>
-					<button className="signInBtn" onClick={() => openSignIn()}>
-						Sign In
-					</button>
-				</SignedOut>
-
-				<SignedIn>
-					<UserButton />
-				</SignedIn>
 			</div>
 		</div>
 	);

@@ -10,7 +10,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { removeProduct } from "../../../Redux/cartSlice";
+import { deleteCartItem } from "../../../api/api";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 	"& .MuiBadge-badge": {
@@ -21,13 +21,15 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 	},
 }));
 
-export default function CustomizedBadges({ cartItemsLength }) {
+export default function CustomizedBadges() {
 	const products = useSelector(state => state.cart.products);
+	const jwt = sessionStorage.getItem("jwt");
+	console.log("cart products", products);
 	const dispatch = useDispatch();
 
 	const subtotal = () => {
 		let sum = 0;
-		products.forEach(element => {
+		products?.forEach(element => {
 			sum += element.price;
 		});
 		return sum;
@@ -56,7 +58,7 @@ export default function CustomizedBadges({ cartItemsLength }) {
 			</div>
 			<div className="scroll">
 				<div className="left">
-					{products.map(d => (
+					{products?.map(d => (
 						<div className="cart-product" key={d.id}>
 							<div className="cartimg">
 								<img
@@ -93,7 +95,7 @@ export default function CustomizedBadges({ cartItemsLength }) {
 											alignItems: "center",
 										}}
 										onClick={() =>
-											dispatch(removeProduct(d.id))
+											deleteCartItem(d.id, jwt, dispatch)
 										}
 									>
 										<AiOutlineDelete color="red" />
@@ -127,7 +129,7 @@ export default function CustomizedBadges({ cartItemsLength }) {
 		>
 			<IconButton aria-label="cart">
 				<StyledBadge
-					badgeContent={products.length ? products.length : "0"}
+					badgeContent={products?.length ? products?.length : "0"}
 					color="secondary"
 				>
 					<ShoppingCartIcon />

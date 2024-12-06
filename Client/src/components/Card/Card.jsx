@@ -3,11 +3,16 @@ import "./Card.css";
 import { Link } from "react-router-dom";
 import Rating from "../Product/components/Rating";
 import { FiShoppingCart } from "react-icons/fi";
-import { addToCart } from "../../Redux/cartSlice";
 import { useDispatch } from "react-redux";
+import { addProdToCart } from "../../api/api";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ product }) => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const jwt = sessionStorage.getItem("jwt");
+	const user = JSON.parse(sessionStorage.getItem("user"));
+
 	return (
 		<div>
 			<Link to={`/product/${product.id}`} className="link">
@@ -56,16 +61,12 @@ const Card = ({ product }) => {
 			<div className="addtocartbutton">
 				<button
 					onClick={() =>
-						dispatch(
-							addToCart({
-								id: product.id,
-								name: product.attributes.product_name,
-								price: product.attributes.product_price,
-								description:
-									product.attributes.product_description,
-								image: product.attributes.product_image.data
-									.attributes.url,
-							})
+						addProdToCart(
+							jwt,
+							user.id,
+							product.id,
+							navigate,
+							dispatch
 						)
 					}
 				>

@@ -4,23 +4,25 @@ import Rating from "./Rating";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import {
-	addToCart,
-	addToWishlist,
-	removeWishlist,
-} from "../../../Redux/cartSlice";
+import { addToWishlist, removeWishlist } from "../../../Redux/cartSlice";
+import { useNavigate } from "react-router-dom";
+import { addProdToCart } from "../../../api/api";
 
-const Right = ({ data }) => {
+const Right = ({ product }) => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const jwt = sessionStorage.getItem("jwt");
+	const user = JSON.parse(sessionStorage.getItem("user"));
+
 	return (
 		<div className="right">
-			<h2>{data.attributes.product_name}</h2>
+			<h2>{product.attributes.product_name}</h2>
 			<div style={{ color: "gray" }}>
-				{data.attributes.product_description}
+				{product.attributes.product_description}
 			</div>
 			<div className="rating">
-				<Rating rating={data.attributes.product_rating} />
-				{data.attributes.product_rating}
+				<Rating rating={product.attributes.product_rating} />
+				{product.attributes.product_rating}
 			</div>
 			<div className="price">
 				<div
@@ -31,10 +33,10 @@ const Right = ({ data }) => {
 					}}
 				>
 					<div className="old-price">
-						${data.attributes.product_price + 60}
+						${product.attributes.product_price + 60}
 					</div>
 					<div className="current-price">
-						${data.attributes.product_price}
+						${product.attributes.product_price}
 					</div>
 				</div>
 				<div className="discount">20% Off!</div>
@@ -46,16 +48,12 @@ const Right = ({ data }) => {
 			<div className="addtocartbutton">
 				<button
 					onClick={() =>
-						dispatch(
-							addToCart({
-								id: data.id,
-								name: data.attributes.product_name,
-								price: data.attributes.product_price,
-								description:
-									data.attributes.product_description,
-								image: data.attributes.product_image.data
-									.attributes.url,
-							})
+						addProdToCart(
+							jwt,
+							user.id,
+							product.id,
+							navigate,
+							dispatch
 						)
 					}
 				>
@@ -67,13 +65,13 @@ const Right = ({ data }) => {
 				onClick={() =>
 					dispatch(
 						addToWishlist({
-							id: data.id,
-							product_name: data.attributes.product_name,
-							product_price: data.attributes.product_price,
+							id: product.id,
+							product_name: product.attributes.product_name,
+							product_price: product.attributes.product_price,
 							product_description:
-								data.attributes.product_description,
+								product.attributes.product_description,
 							product_image:
-								data.attributes.product_image.data.attributes
+								product.attributes.product_image.data.attributes
 									.url,
 						})
 					)
@@ -81,7 +79,9 @@ const Right = ({ data }) => {
 			>
 				<FaRegHeart /> Add to wishlist
 			</div>
-			<div onClick={() => dispatch(removeWishlist(data.id))}>remove</div>
+			<div onClick={() => dispatch(removeWishlist(product.id))}>
+				remove
+			</div>
 			<div className="about">
 				<div>Vender : Polo</div>
 				<div>Type: T-Shirt</div>

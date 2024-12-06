@@ -1,16 +1,16 @@
 import React from "react";
 import "./Cart.css";
-import product1 from "../../assets/product1.jpg";
 import Quantity from "../Product/components/Quantity";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { removeProduct } from "../../Redux/cartSlice";
+import { deleteCartItem } from "../../api/api";
 
 const Cart = () => {
 	const products = useSelector(state => state.cart.products);
 	const dispatch = useDispatch();
+	const jwt = sessionStorage.getItem("jwt");
 
 	const subtotal = () => {
 		let sum = 0;
@@ -21,7 +21,7 @@ const Cart = () => {
 		return sum;
 	};
 
-	const discount = () => products.length * 60; // Subtracting 20% from the subtotal
+	const discount = () => products.length * 60;
 
 	return (
 		<div className="cartpage">
@@ -60,10 +60,10 @@ const Cart = () => {
 										alignItems: "center",
 									}}
 									onClick={() =>
-										dispatch(removeProduct(d.id))
+										deleteCartItem(d.id, jwt, dispatch)
 									}
 								>
-									<AiOutlineDelete color="red" />
+									<AiOutlineDelete color="red" /> delete me
 								</div>
 								<div
 									style={{

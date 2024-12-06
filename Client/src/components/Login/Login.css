@@ -1,0 +1,32 @@
+.form-container {
+	padding: 60px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.form-container h1 {
+	color: cornflowerblue;
+	margin-bottom: 20px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.form input {
+	padding: 12px;
+	border: 1px solid cornflowerblue;
+	border-radius: 10px;
+}
+
+.form-container .auth-button {
+	background-color: crimson;
+	width: 200px;
+	border: none;
+	border-radius: 10px;
+	height: 32px;
+	color: white;
+	cursor: pointer;
+}
