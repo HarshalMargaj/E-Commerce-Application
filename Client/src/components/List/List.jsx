@@ -2,8 +2,6 @@ import React from "react";
 import Card from "../Card/Card";
 import useFetch from "../hooks/useFetch";
 
-import "./LIst.css";
-
 const List = ({
 	catId,
 	selectedSubcatsIds,
@@ -26,7 +24,7 @@ const List = ({
 	setResults(data.length);
 
 	return (
-		<div className="list">
+		<div className="flex gap-5 flex-wrap justify-between">
 			{data.map(l => (
 				<Card product={l} key={l.id} />
 			))}

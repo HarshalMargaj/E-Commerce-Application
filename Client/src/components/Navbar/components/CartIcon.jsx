@@ -35,78 +35,56 @@ export default function CustomizedBadges() {
 	};
 
 	const cartDropdownContent = (
-		<div className="cartDropdownContent">
-			<div
-				style={{
-					textAlign: "center",
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "baseline",
-					gap: "10px",
-				}}
-			>
+		<div className="bg-white shadow-md w-[500px] rounded-lg p-[10px] flex flex-col gap-[10px] text-sm">
+			<div className="flex items-baseline justify-center text-center gap-[10px]">
 				<div>Subtotal </div>
-				<div style={{ color: "crimson", fontSize: "20px" }}>
-					${subtotal()}
-				</div>
+				<div className="text-red-500 text-xl">${subtotal()}</div>
 			</div>
-			<div className="gotocartbutton">
-				<Link to={"/cart"} style={{ width: "100%" }}>
-					<button className="gotocart">Go to cart</button>
+			<div className="flex items-center">
+				<Link to={"/cart"} className="w-full">
+					<button className="bg-[#2879fe] text-white py-2 px-3 border-none rounded-md w-full">
+						Go to cart
+					</button>
 				</Link>
 			</div>
-			<div className="scroll">
-				<div className="left">
+			<div className="overflow-y-scroll max-h-[500px]">
+				<div className="flex flex-col">
 					{products?.map(d => (
-						<div className="cart-product" key={d.id}>
-							<div className="cartimg">
+						<div
+							className="border-y flex items-center p-5"
+							key={d.id}
+						>
+							<div className="w-[30%]">
 								<img
 									src={
 										import.meta.env.VITE_UPLOAD_URL +
 										d.image
 									}
 									alt=""
+									className="w-[100px] h-[100px]"
 								/>
 							</div>
-							<div className="cart-right">
+							<div className="flex flex-col gap-[10px] w-[70%]">
 								<div>
-									<h3 className="cart-prod-name">{d.name}</h3>
-									<div className="cart-prod-desc">
+									<h3>{d.name}</h3>
+									<div className="text-gray-400">
 										{d.description}
 									</div>
-									<div className="cart-prod-price">
-										${d.price}
-									</div>
+									<div>${d.price}</div>
 								</div>
-								<div
-									style={{
-										display: "flex",
-										alignItems: "center",
-										gap: "20px",
-									}}
-								>
+								<div className="flex items-center gap-5">
 									<div>
 										<Quantity />
 									</div>
 									<div
-										style={{
-											display: "flex",
-											alignItems: "center",
-										}}
+										className="flex items-center"
 										onClick={() =>
 											deleteCartItem(d.id, jwt, dispatch)
 										}
 									>
 										<AiOutlineDelete color="red" />
 									</div>
-									<div
-										style={{
-											display: "flex",
-											alignItems: "center",
-											gap: "10px",
-											color: "#2879fe",
-										}}
-									>
+									<div className="flex items-center gap-[10px] text-[#2879fe]">
 										<FaRegHeart />
 										Move to wishlist
 									</div>

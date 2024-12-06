@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { FiShoppingCart } from "react-icons/fi";
-import "./Wshlist.css";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { addProdToCart, deleteWishlistProd } from "../../api/api";
@@ -16,27 +15,15 @@ const Wishlist = () => {
 
 	return (
 		<div>
-			<div
-				style={{
-					padding: "40px 60px",
-					paddingBottom: "0",
-					color: "dimgray",
-				}}
-			>
-				<span
-					style={{
-						fontSize: "24px",
-						fontWeight: "500",
-						color: "black",
-					}}
-				>
+			<div className="py-10 px-[60px] pb-0 text-gray-400">
+				<span className="text-2xl font-medium text-black">
 					My Wishlist
 				</span>{" "}
 				{wishlists.length} items
 			</div>
-			<div className="wishlist-container">
+			<div className="py-10 px-[60px] flex justify-start gap-10 flex-wrap">
 				{wishlists.map(item => (
-					<div className="wishlist-card" key={item.id}>
+					<div className="relative flex flex-col gap-2" key={item.id}>
 						<div>
 							<img
 								src={
@@ -44,33 +31,25 @@ const Wishlist = () => {
 									item.product_image
 								}
 								alt=""
-								width={300}
-								height={300}
+								className="w-[300px] h-[300px]"
 							/>
 						</div>
 						<div>{item.product_name}</div>
-						<div
-							className="price"
-							style={{ display: "flex", alignItems: "baseline" }}
-						>
-							<div className="current-price">
+						<div className="flex items-baseline gap-2">
+							<div className="font-medium text-[#2879fe] text-2xl">
 								${item.product_price}
-								<small
-									style={{
-										fontSize: "14px",
-										color: "dimgray",
-									}}
-								>
+								<small className="text-sm text-gray-400">
 									M.R.P
 								</small>
 							</div>
-							<div className="old-price">
+							<div className="text-gray-400">
 								${item.product_price + 60}
 							</div>
 							<span>(20% off)</span>
 						</div>
-						<div className="addtocartbutton">
+						<div>
 							<button
+								className="bg-[#2879fe] text-white w-[200px] border-none py-2 px-3 rounded-md gap-1 flex items-center justify-center"
 								onClick={() =>
 									addProdToCart(
 										jwt,
@@ -85,7 +64,7 @@ const Wishlist = () => {
 							</button>
 						</div>
 						<div
-							className="closeicon"
+							className="absolute top-[10px] right-[10px] cursor-pointer"
 							onClick={() =>
 								deleteWishlistProd(item.id, jwt, dispatch)
 							}

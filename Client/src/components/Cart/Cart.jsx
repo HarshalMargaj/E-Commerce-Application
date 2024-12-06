@@ -1,5 +1,5 @@
 import React from "react";
-import "./Cart.css";
+// import "./Cart.css";
 import Quantity from "../Product/components/Quantity";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
@@ -24,55 +24,41 @@ const Cart = () => {
 	const discount = () => products.length * 60;
 
 	return (
-		<div className="cartpage">
-			<div className="left">
+		<div className="p-10 flex justify-between">
+			<div className="w-[60%]">
 				{products.map(d => (
-					<div className="cart-product" key={d.id}>
-						<div className="cartimg">
+					<div
+						className="border-y flex gap-5 items-center p-5"
+						key={d.id}
+					>
+						<div className="w-[15%]">
 							<img
 								src={import.meta.env.VITE_UPLOAD_URL + d.image}
 								alt=""
+								className="w-[100px] h-[100px]"
 							/>
 						</div>
-						<div className="cart-right">
+						<div className="flex flex-col gap-2 w-[85%]">
 							<div>
-								<h3 className="cart-prod-name">{d.name}</h3>
-								<div className="cart-prod-desc">
+								<h3>{d.name}</h3>
+								<div className="text-gray-400">
 									{d.description}
 								</div>
-								<div className="cart-prod-price">
-									${d.price}
-								</div>
+								<div>${d.price}</div>
 							</div>
-							<div
-								style={{
-									display: "flex",
-									alignItems: "center",
-									gap: "20px",
-								}}
-							>
+							<div className="flex items-center gap-5">
 								<div>
 									<Quantity />
 								</div>
 								<div
-									style={{
-										display: "flex",
-										alignItems: "center",
-									}}
+									className="flex items-center cursor-pointer"
 									onClick={() =>
 										deleteCartItem(d.id, jwt, dispatch)
 									}
 								>
-									<AiOutlineDelete color="red" /> delete me
+									<AiOutlineDelete color="red" />
 								</div>
-								<div
-									style={{
-										display: "flex",
-										alignItems: "center",
-										gap: "10px",
-										color: "#2879fe",
-									}}
-								>
+								<div className="flex items-center gap-2 text-[#2879fe] cursor-pointer">
 									<FaRegHeart />
 									Move to wishlist
 								</div>
@@ -81,27 +67,26 @@ const Cart = () => {
 					</div>
 				))}
 			</div>
-			<div className="right">
-				<div className="cart-total">
+			<div className="w-[40%] flex justify-center items-start">
+				<div className="max-h-[300px] w-[300px] shadow-md rounded">
 					<div>
-						<div className="payment">Payment</div>
-						<div className="subtotal">
+						<div className="py-2 px-3 text-2xl">Payment</div>
+						<div className="py-2 px-3 border-b flex justify-between">
 							Subtotal item({products.length})
 							<div>${subtotal() + products.length * 60}</div>
 						</div>
-						<div className="cart-discount">
+						<div className="py-2 px-3 border-b flex justify-between text-red-500">
 							Discount
 							<div>-${discount()}</div>
 						</div>
-						<div className="subtotal">
+						<div className="py-2 px-3 border-b flex justify-between">
 							Total
 							<div>${subtotal()}</div>
 						</div>
-						<div
-							className="gotocartbutton"
-							style={{ padding: "10px 12px" }}
-						>
-							<button className="gotocart">Proceed to buy</button>
+						<div className="flex justify-center py-2 px-3">
+							<button className="bg-[#2879fe] text-white py-2 px-3 border-none rounded w-ful">
+								Proceed to buy
+							</button>
 						</div>
 					</div>
 				</div>

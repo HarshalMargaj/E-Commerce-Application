@@ -1,7 +1,6 @@
 import React from "react";
 import Left from "./components/Left";
 import Right from "./components/Right";
-import "./Product.css";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
@@ -11,7 +10,7 @@ const Product = ({ cartItemsLength }) => {
 	console.log("data from product", data);
 
 	if (isLoading) {
-		return <div>Loading...</div>; // Display a loading spinner or message
+		return <div>Loading...</div>;
 	}
 
 	if (error) {
@@ -20,17 +19,16 @@ const Product = ({ cartItemsLength }) => {
 		);
 	}
 
-	// Check if data is available before rendering the components
 	if (!data || !data.attributes) {
 		return <div>No product details available.</div>;
 	}
 
 	return (
-		<div className="productdetail" style={{ display: "flex" }}>
-			<div className="left">
+		<div className="flex w-full">
+			<div className="flex p-5 gap-4 w-[40%]">
 				<Left data={data} />
 			</div>
-			<div className="right">
+			<div className="p-5 gap-5 flex flex-col w-[60%]">
 				<Right product={data} />
 			</div>
 		</div>

@@ -8,9 +8,11 @@ const FeaturedProducts = ({ type }) => {
 	);
 
 	return (
-		<div className="featured-products">
-			<div className="head">
-				<h2 style={{ textTransform: "capitalize" }}>{type} Products</h2>
+		<div className="p-[60px] text-sm flex flex-col gap-10">
+			<div className="flex">
+				<h2 className="w-[40%] text-gray-400 capitalize">
+					{type} Products
+				</h2>
 				<p>
 					Explore our curated selection of top-rated and
 					customer-favorite products. These are the must-have items
@@ -19,7 +21,7 @@ const FeaturedProducts = ({ type }) => {
 					featured products offer something special for everyone.
 				</p>
 			</div>
-			<div className="products">
+			<div className="flex gap-5 justify-between">
 				{data.map(product => (
 					<Card product={product} key={product.id} />
 				))}

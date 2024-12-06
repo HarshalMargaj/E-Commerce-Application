@@ -1,5 +1,5 @@
 import React from "react";
-import "./Hero.css";
+// import "./Hero.css";
 import Slider from "./components/Slider";
 import FeaturedProducts from "./components/FeaturedProducts";
 import Categories from "./components/Categories";

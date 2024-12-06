@@ -1,5 +1,4 @@
 import React from "react";
-import "./Card.css";
 import { Link } from "react-router-dom";
 import Rating from "../Product/components/Rating";
 import { FiShoppingCart } from "react-icons/fi";
@@ -15,8 +14,8 @@ const Card = ({ product }) => {
 
 	return (
 		<div>
-			<Link to={`/product/${product.id}`} className="link">
-				<div className="card">
+			<Link to={`/product/${product.id}`}>
+				<div className="flex flex-col gap-2 text-gray-400 w-[300px]">
 					<img
 						src={
 							import.meta.env.VITE_UPLOAD_URL +
@@ -24,42 +23,39 @@ const Card = ({ product }) => {
 								?.url
 						}
 						alt=""
-						width={300}
-						height={300}
+						className="w-[300px] h-[300px]"
 					/>
-					<h3 style={{ color: "dimgray", fontWeight: "500" }}>
+					<h3 className="text-gray-400 font-medium">
 						{product.attributes.product_name}
 					</h3>
 					<p>{product.attributes.product_description}</p>
 					<Rating rating={product.attributes.product_rating} />
 					<div>
 						{product.attributes.isLimitedTimeDeal ? (
-							<div className="deal">Limited Time Deal</div>
+							<div className="bg-red-500 text-white font-medium w-1/2 rounded p-1 text-sm text-center">
+								Limited Time Deal
+							</div>
 						) : (
 							<div></div>
 						)}
 					</div>
-					<div
-						className="price"
-						style={{ display: "flex", alignItems: "baseline" }}
-					>
-						<div className="current-price">
+					<div className="flex items-baseline gap-2">
+						<div className="font-medium text-[#2879fe] text-2xl">
 							${product.attributes.product_price}
-							<small
-								style={{ fontSize: "14px", color: "dimgray" }}
-							>
+							<small className="text-sm text-gray-400">
 								M.R.P
 							</small>
 						</div>
-						<div className="old-price">
+						<div className="text-gray-400">
 							${product.attributes.product_price + 60}
 						</div>
 						<span>(20% off)</span>
 					</div>
 				</div>
 			</Link>
-			<div className="addtocartbutton">
+			<div>
 				<button
+					className="bg-[#2879fe] text-white w-[200px] border-none py-2 px-3 rounded-md gap-1 flex items-center justify-center"
 					onClick={() =>
 						addProdToCart(
 							jwt,

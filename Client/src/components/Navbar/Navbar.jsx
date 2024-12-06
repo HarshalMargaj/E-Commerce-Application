@@ -6,7 +6,6 @@ import { FaSearch } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Categories from "../Home/components/Categories";
 import { FaRegHeart } from "react-icons/fa";
-import "./Nabar.css";
 import { resetCart } from "../../Redux/cartSlice";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../Redux/userSlice";
@@ -18,7 +17,7 @@ const Navbar = () => {
 	const dispatch = useDispatch();
 
 	const categoryDropdownContent = (
-		<div className="categoryDropdownContent">
+		<div className="bg-white shadow-md w-[1300px] rounded-md p-2">
 			<Categories />
 		</div>
 	);
@@ -30,15 +29,17 @@ const Navbar = () => {
 	};
 
 	const profileDropdown = (
-		<div style={{ background: "white", padding: "10px" }}>
-			<div onClick={logout}>Log out</div>
+		<div className="bg-white rounded-md shadow-lg p-2">
+			<div onClick={logout} className="cursor-pointer">
+				Log out
+			</div>
 		</div>
 	);
 
 	return (
-		<div className="header">
-			<div className="brand-name">
-				<Link to={"/"} className="icon">
+		<div className="flex justify-between h-[75px] items-center border-b py-2 px-8">
+			<div className="flex items-center gap-5">
+				<Link to={"/"} className="text-[32px] text-[#2879fe]">
 					<div>ShopVista</div>
 				</Link>
 				<Tippy
@@ -47,17 +48,21 @@ const Navbar = () => {
 					placement="bottom"
 					offset={[-100, 40]}
 				>
-					<div className="categories">
+					<div className="flex items-center gap-[5px] cursor-pointer">
 						Categories <MdKeyboardArrowDown />
 					</div>
 				</Tippy>
 			</div>
-			<div className="searchbar">
+			<div className="w-[40%] border flex gap-[10px] p-2 items-center rounded-lg">
 				<FaSearch />
-				<input type="text" placeholder="Search products" />
+				<input
+					type="text"
+					placeholder="Search products"
+					className="w-full border-none outline-none mb-0"
+				/>
 			</div>
-			<div className="menus">
-				<Link to={"/wishlist"} className="l">
+			<div className="flex items-center gap-5">
+				<Link to={"/wishlist"} className="text-black">
 					<FaRegHeart />
 				</Link>
 
@@ -74,7 +79,9 @@ const Navbar = () => {
 						placement="bottom"
 						trigger="click"
 					>
-						<div>Hi, {loginuser && loginuser?.username}</div>
+						<div className="cursor-pointer">
+							Hi, {loginuser && loginuser?.username}
+						</div>
 					</Tippy>
 				)}
 			</div>

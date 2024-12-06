@@ -14,38 +14,35 @@ const Right = ({ product }) => {
 	const user = JSON.parse(sessionStorage.getItem("user"));
 
 	return (
-		<div className="right">
+		<div className="p-5 flex flex-col gap-5 ">
 			<h2>{product.attributes.product_name}</h2>
-			<div style={{ color: "gray" }}>
+			<div className="text-gray-400">
 				{product.attributes.product_description}
 			</div>
-			<div className="rating">
+			<div className="flex gap-1">
 				<Rating rating={product.attributes.product_rating} />
 				{product.attributes.product_rating}
 			</div>
-			<div className="price">
-				<div
-					style={{
-						display: "flex",
-						alignItems: "baseline",
-						gap: "10px",
-					}}
-				>
-					<div className="old-price">
+			<div className="flex gap-2 items-center">
+				<div className="flex items-baseline gap-2">
+					<div className="text-gray-400">
 						${product.attributes.product_price + 60}
 					</div>
-					<div className="current-price">
+					<div className="font-medium text-[#2879fe] text-2xl">
 						${product.attributes.product_price}
 					</div>
 				</div>
-				<div className="discount">20% Off!</div>
+				<div className="bg-red-500 py-1 px-3 w-[100px] rounded-md font-medium text-white flex justify-center">
+					20% Off!
+				</div>
 			</div>
 
 			<div>
 				<Quantity />
 			</div>
-			<div className="addtocartbutton">
+			<div>
 				<button
+					className="bg-[#2879fe] text-white w-[200px] border-none py-2 px-3 rounded-md gap-1 flex items-center justify-center"
 					onClick={() =>
 						addProdToCart(
 							jwt,
@@ -60,26 +57,14 @@ const Right = ({ product }) => {
 				</button>
 			</div>
 			<div
-				className="addtowishlist"
+				className="text-[#2879fe] flex items-center gap-2 cursor-pointer"
 				onClick={() =>
-					// dispatch(
-					// 	addToWishlist({
-					// 		id: product.id,
-					// 		product_name: product.attributes.product_name,
-					// 		product_price: product.attributes.product_price,
-					// 		product_description:
-					// 			product.attributes.product_description,
-					// 		product_image:
-					// 			product.attributes.product_image.data.attributes
-					// 				.url,
-					// 	})
-					// )
 					addProdToWishlist(user.id, product.id, jwt, dispatch)
 				}
 			>
 				<FaRegHeart /> Add to wishlist
 			</div>
-			<div className="about">
+			<div className="text-gray-400">
 				<div>Vender : Polo</div>
 				<div>Type: T-Shirt</div>
 				<div>Tag: T-Shirt, Men, Gym</div>

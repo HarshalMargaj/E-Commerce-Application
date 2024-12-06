@@ -6,8 +6,6 @@ import Products from "./components/Products/Products";
 import Cart from "./components/Cart/Cart";
 import NotFound from "./components/NotFound/NotFound";
 import Navbar from "./components/Navbar/Navbar";
-import About from "./components/About/About";
-import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import Wishlist from "./components/Wishlist/Wishlist";
 import Login from "./components/Login/Login";
@@ -25,7 +23,7 @@ const App = () => {
 				/>
 				<Routes>
 					<Route exact path="/" element={<Home />} />
-					<Route exact path="/about" element={<About />} />
+
 					<Route
 						exact
 						path="/product/:id"
@@ -36,7 +34,7 @@ const App = () => {
 							/>
 						}
 					/>
-					<Route path="/contact" element={<Contact />} />
+
 					<Route
 						path="/products/:id"
 						element={

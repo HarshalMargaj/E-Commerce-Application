@@ -88,18 +88,11 @@ const Left = ({
 		},
 	}));
 	return (
-		<div className="left-container" style={{ position: "sticky", top: 20 }}>
-			<div className="category">
-				<h2>Categories</h2>
+		<div className="text-sm flex flex-col gap-5 sticky top-[20px]">
+			<div className="flex flex-col gap-1">
+				<h2 className="text-md font-medium">Categories</h2>
 				{data.map(label => (
-					<div
-						style={{
-							display: "flex",
-							alignItems: "center",
-							gap: "10px",
-						}}
-						key={label.id}
-					>
+					<div className="flex items-center gap-2" key={label.id}>
 						<input
 							type="checkbox"
 							id={label.id}
@@ -112,7 +105,7 @@ const Left = ({
 					</div>
 				))}
 			</div>
-			<div className="price-slider">
+			<div className="flex flex-col gap-4">
 				<h2>Price</h2>
 				<IOSSlider
 					aria-label="ios slider"

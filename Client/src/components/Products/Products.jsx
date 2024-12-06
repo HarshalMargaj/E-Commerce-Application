@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Left from "./components/Left";
 import Right from "./components/Right";
 import { useParams } from "react-router-dom";
-import "./Products.css";
 import useFetch from "../hooks/useFetch";
 import Tippy from "@tippyjs/react";
 
@@ -28,11 +27,11 @@ const Products = () => {
 	];
 
 	const sortByDropdownContent = (
-		<div className="sortByDropdownContent">
+		<div className="bg-white shadow-md p-2 rounded-md">
 			{sortByOptions.map(item => (
 				<div
 					key={item.id}
-					className="option"
+					className="py-1 px-3 cursor-pointer hover:bg-gray-100 rounded-md"
 					onClick={() => {
 						if (item.action === "asc" || item.action === "desc")
 							setSort(item.action);
@@ -50,10 +49,10 @@ const Products = () => {
 	);
 	return (
 		<div>
-			<div className="top-bar">
+			<div className="py-5 px-10 border-b flex justify-between items-center h-5">
 				<div>Results : {results}</div>
 
-				<div className="sort-drop" style={{ display: "flex" }}>
+				<div className="flex justify-between items-center gap-2">
 					<div>Sort by : </div>
 					<Tippy
 						content={sortByDropdownContent}
@@ -61,12 +60,14 @@ const Products = () => {
 						placement="bottom"
 						trigger="click"
 					>
-						<div className="drop">{value}</div>
+						<div className="border w-[150px] p-1 rounded-md">
+							{value}
+						</div>
 					</Tippy>
 				</div>
 			</div>
-			<div className="category-products">
-				<div className="left">
+			<div className="flex p-10">
+				<div className="w-[20%] border-r p-5">
 					<Left
 						catId={catId}
 						data={data}
@@ -78,7 +79,7 @@ const Products = () => {
 						setSort={setSort}
 					/>
 				</div>
-				<div className="right">
+				<div className="w-[80%] p-5">
 					<Right
 						catId={catId}
 						selectedSubcatsIds={selectedSubcatsIds}
