@@ -42,6 +42,10 @@ export const cartSlice = createSlice({
 				item => item.id !== action.payload
 			);
 		},
+
+		resetWishlist: state => {
+			state.wishlists = [];
+		},
 	},
 });
 
@@ -51,6 +55,7 @@ export const {
 	resetCart,
 	addToWishlist,
 	removeWishlist,
+	resetWishlist,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

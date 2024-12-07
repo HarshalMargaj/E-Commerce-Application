@@ -6,7 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Categories from "../Home/components/Categories";
 import { FaRegHeart } from "react-icons/fa";
-import { resetCart } from "../../Redux/cartSlice";
+import { resetCart, resetWishlist } from "../../Redux/cartSlice";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../Redux/userSlice";
 import { useSelector } from "react-redux";
@@ -14,6 +14,9 @@ import { allProducts } from "../../api/api";
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 import { FaUserCircle } from "react-icons/fa";
 import { TbLogout } from "react-icons/tb";
+import CustomModal from "../Modal/Modal";
+import Login from "../Login/Login";
+import SignUp from "../Signup/Signup";
 
 const Navbar = () => {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -22,6 +25,11 @@ const Navbar = () => {
 	const dispatch = useDispatch();
 	const jwt = sessionStorage.getItem("jwt");
 	const [products, setProducts] = useState([]);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isClickedOnSignup, setIsClickedOnSignup] = useState(false);
+
+	const openModal = () => setIsModalOpen(true);
+	const closeModal = () => setIsModalOpen(false);
 
 	const categoryDropdownContent = (
 		<div className="bg-white shadow-md w-[1300px] rounded-md p-2">
@@ -33,6 +41,7 @@ const Navbar = () => {
 		sessionStorage.clear();
 		dispatch(logoutUser());
 		dispatch(resetCart());
+		dispatch(resetWishlist());
 	};
 
 	const profileDropdown = (
@@ -128,10 +137,10 @@ const Navbar = () => {
 				<CartIcon />
 
 				{!isLogin ? (
-					<Link to={"/login"}>
-						<button>Login</button>
-					</Link>
+					// <Link to={"/login"}>
+					<button onClick={openModal}>Login</button>
 				) : (
+					// </Link>
 					<Tippy
 						content={profileDropdown}
 						interactive={true}
@@ -147,6 +156,17 @@ const Navbar = () => {
 					</Tippy>
 				)}
 			</div>
+			<CustomModal
+				isOpen={isModalOpen}
+				onClose={closeModal}
+				title="Custom Modal Title"
+			>
+				{!isClickedOnSignup ? (
+					<Login setIsClickedOnSignup={setIsClickedOnSignup} />
+				) : (
+					<SignUp setIsClickedOnSignup={setIsClickedOnSignup} />
+				)}
+			</CustomModal>
 		</div>
 	);
 };

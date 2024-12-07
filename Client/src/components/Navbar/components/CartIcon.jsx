@@ -11,6 +11,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteCartItem } from "../../../api/api";
+import zIndex from "@mui/material/styles/zIndex";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 	"& .MuiBadge-badge": {
@@ -18,6 +19,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 		top: 13,
 		border: `2px solid ${theme.palette.background.paper}`,
 		padding: "0 4px",
+		zIndex: "-1",
 	},
 }));
 

@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Route,
+	Routes,
+	useLocation,
+} from "react-router-dom";
 import Home from "./components/Home/Home";
 import Product from "./components/Product/Product";
 import Products from "./components/Products/Products";
@@ -11,57 +16,68 @@ import Wishlist from "./components/Wishlist/Wishlist";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 
-const App = () => {
+const AppContent = () => {
 	const [cartItemsLength, setCartItemsLenght] = useState(1);
 
+	const location = useLocation();
+
+	const hideOnRoutes = ["/login", "/signup"];
+	const hideNavbarFooter = hideOnRoutes.includes(location.pathname);
+
 	return (
-		<Router>
-			<div>
+		<div>
+			{!hideNavbarFooter && (
 				<Navbar
 					setCartItemsLenght={setCartItemsLenght}
 					cartItemsLength={cartItemsLength}
 				/>
-				<Routes>
-					<Route exact path="/" element={<Home />} />
+			)}
+			<Routes>
+				<Route exact path="/" element={<Home />} />
 
-					<Route
-						exact
-						path="/product/:id"
-						element={
-							<Product
-								setCartItemsLenght={setCartItemsLenght}
-								cartItemsLength={cartItemsLength}
-							/>
-						}
-					/>
+				<Route
+					exact
+					path="/product/:id"
+					element={
+						<Product
+							setCartItemsLenght={setCartItemsLenght}
+							cartItemsLength={cartItemsLength}
+						/>
+					}
+				/>
 
-					<Route
-						path="/products/:id"
-						element={
-							<Products
-								setCartItemsLenght={setCartItemsLenght}
-								cartItemsLength={cartItemsLength}
-							/>
-						}
-					/>
-					<Route path="/wishlist" element={<Wishlist />} />
-					<Route
-						path="/cart"
-						element={
-							<Cart
-								setCartItemsLenght={setCartItemsLenght}
-								cartItemsLength={cartItemsLength}
-							/>
-						}
-					/>
-					<Route path="*" element={<NotFound />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/signup" element={<Signup />} />
-				</Routes>
-				<Footer />
-			</div>
-		</Router>
+				<Route
+					path="/products/:id"
+					element={
+						<Products
+							setCartItemsLenght={setCartItemsLenght}
+							cartItemsLength={cartItemsLength}
+						/>
+					}
+				/>
+				<Route path="/wishlist" element={<Wishlist />} />
+				<Route
+					path="/cart"
+					element={
+						<Cart
+							setCartItemsLenght={setCartItemsLenght}
+							cartItemsLength={cartItemsLength}
+						/>
+					}
+				/>
+				<Route path="*" element={<NotFound />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/signup" element={<Signup />} />
+			</Routes>
+			{!hideNavbarFooter && <Footer />}
+		</div>
 	);
 };
+
+const App = () => (
+	<Router>
+		<AppContent />
+	</Router>
+);
 
 export default App;
