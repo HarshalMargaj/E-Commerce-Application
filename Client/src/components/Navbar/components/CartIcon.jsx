@@ -102,9 +102,9 @@ export default function CustomizedBadges() {
 		<Tippy
 			content={cartDropdownContent}
 			interactive={true}
-			placement="bottom-start"
+			placement="bottom"
 			trigger="click"
-			offset={[-150, 10]}
+			offset={[-100, 10]}
 		>
 			<IconButton aria-label="cart">
 				<StyledBadge
