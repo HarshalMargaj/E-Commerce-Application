@@ -214,3 +214,19 @@ export const fetchUserWishlist = async (userId, jwt, dispatch) => {
 		console.error("Error fetching user cart:", error);
 	}
 };
+
+export const allProducts = async jwt => {
+	try {
+		const response = await axios.get(
+			`${import.meta.env.VITE_API_URL}/products?populate=*`,
+			{
+				headers: {
+					Authorization: `Bearer ${jwt}`,
+				},
+			}
+		);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+	}
+};
