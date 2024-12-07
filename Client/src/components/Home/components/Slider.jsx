@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import ImageOne from "../../../assets/imageone.jpg";
-import ImageTwo from "../../../assets/imagetwo.jpg";
-import ImageThree from "../../../assets/imagethree.jpg";
-import ImageFour from "../../../assets/imagefour.jpg";
-import ImageFive from "../../../assets/imagefive.jpg";
+import ImageOne from "../../../assets/3588607.jpg";
+import ImageTwo from "../../../assets/3609477.jpg";
+import ImageThree from "../../../assets/4028471.jpg";
+import ImageFour from "../../../assets/4028484.jpg";
+// import ImageFive from "../../../assets/imagefive.jpg";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -45,9 +45,9 @@ export default function App() {
 				<SwiperSlide>
 					<img src={ImageFour} alt="" />
 				</SwiperSlide>
-				<SwiperSlide>
+				{/* <SwiperSlide>
 					<img src={ImageFive} alt="" />
-				</SwiperSlide>
+				</SwiperSlide> */}
 			</Swiper>
 		</>
 	);

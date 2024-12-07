@@ -15,8 +15,10 @@ const Right = ({ product }) => {
 
 	return (
 		<div className="p-5 flex flex-col gap-5 ">
-			<h2>{product.attributes.product_name}</h2>
-			<div className="text-gray-400">
+			<h2 className="text-4xl text-gray-700">
+				{product.attributes.product_name}
+			</h2>
+			<div className="text-gray-500">
 				{product.attributes.product_description}
 			</div>
 			<div className="flex gap-1">

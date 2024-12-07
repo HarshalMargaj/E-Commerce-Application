@@ -15,7 +15,7 @@ const Card = ({ product }) => {
 	return (
 		<div>
 			<Link to={`/product/${product.id}`}>
-				<div className="flex flex-col gap-2 text-gray-400 w-[300px]">
+				<div className="flex flex-col gap-2 text-gray-500 w-[300px]">
 					<img
 						src={
 							import.meta.env.VITE_UPLOAD_URL +
@@ -25,7 +25,7 @@ const Card = ({ product }) => {
 						alt=""
 						className="w-[300px] h-[300px]"
 					/>
-					<h3 className="text-gray-400 font-medium">
+					<h3 className="text-gray-800 font-medium">
 						{product.attributes.product_name}
 					</h3>
 					<p>{product.attributes.product_description}</p>

@@ -10,10 +10,10 @@ const FeaturedProducts = ({ type }) => {
 	return (
 		<div className="p-[60px] text-sm flex flex-col gap-10">
 			<div className="flex">
-				<h2 className="w-[40%] text-gray-400 capitalize">
+				<h2 className="w-[40%] text-blue-400 capitalize text-4xl">
 					{type} Products
 				</h2>
-				<p>
+				<p className="text-gray-700">
 					Explore our curated selection of top-rated and
 					customer-favorite products. These are the must-have items
 					that our shoppers can't get enough of! Whether you're
