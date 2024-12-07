@@ -1,5 +1,4 @@
 import React from "react";
-import Quantity from "./Quantity";
 import Rating from "./Rating";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa";
@@ -39,9 +38,6 @@ const Right = ({ product }) => {
 				</div>
 			</div>
 
-			<div>
-				<Quantity />
-			</div>
 			<div>
 				<button
 					className="bg-[#2879fe] text-white w-[200px] border-none py-2 px-3 rounded-md gap-1 flex items-center justify-center"
