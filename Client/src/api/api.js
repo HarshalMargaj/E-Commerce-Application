@@ -5,6 +5,7 @@ import {
 	removeProduct,
 	removeWishlist,
 } from "../Redux/cartSlice";
+import toast from "react-hot-toast";
 
 export const addProdToCart = async (
 	jwt,
@@ -38,7 +39,6 @@ export const addProdToCart = async (
 				},
 			}
 		);
-		console.log(response.data.data.id);
 		const cartId = response.data.data.id;
 		const Cartdata = response.data.data.attributes.products.data[0];
 		dispatch(
@@ -50,8 +50,9 @@ export const addProdToCart = async (
 				image: Cartdata.attributes.product_image.data.attributes.url,
 			})
 		);
+		toast.success("Item added to cart successfully.");
 	} catch (error) {
-		console.log(error);
+		toast.error("Failed to add item to cart. Please try again.");
 	}
 };
 
@@ -68,16 +69,10 @@ export const deleteCartItem = async (id, jwt, dispatch) => {
 				},
 			}
 		);
-
-		console.log("Deleted cart item:", response.data);
-
 		dispatch(removeProduct(id));
+		toast.success("Item removed from cart.");
 	} catch (error) {
-		if (error.response) {
-			console.log("Error response:", error.response.data);
-		} else {
-			console.log("Error:", error.message);
-		}
+		toast.error("Failed to remove item from cart. Please try again.");
 	}
 };
 
@@ -136,8 +131,6 @@ export const addProdToWishlist = async (userId, productId, jwt, dispatch) => {
 			}
 		);
 
-		console.log(response.data);
-
 		const wishlistId = response.data.data.id;
 		const wishlistData = response.data.data.attributes.products.data[0];
 
@@ -152,8 +145,9 @@ export const addProdToWishlist = async (userId, productId, jwt, dispatch) => {
 					wishlistData.attributes.product_image.data.attributes.url,
 			})
 		);
+		toast.success("Item added to wishlist successfully.");
 	} catch (error) {
-		console.log(error);
+		toast.error("Failed to add item to wishlist. Please try again.");
 	}
 };
 
@@ -171,11 +165,10 @@ export const deleteWishlistProd = async (id, jwt, dispatch) => {
 			}
 		);
 
-		console.log("Deleted cart item:", response.data);
-
 		dispatch(removeWishlist(id));
+		toast.success("Item removed from wishlist.");
 	} catch (error) {
-		console.log(error);
+		toast.error("Failed to remove item from wishlist. Please try again.");
 	}
 };
 

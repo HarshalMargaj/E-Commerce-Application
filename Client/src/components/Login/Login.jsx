@@ -5,20 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { fetchUserCart, fetchUserWishlist } from "../../api/api";
 import { useDispatch } from "react-redux";
 import { setLoggedInUser } from "../../Redux/userSlice";
-import SignUp from "../Signup/Signup";
-import CustomModal from "../Modal/Modal";
+import { toast } from "react-hot-toast";
 
-const Login = ({ setIsClickedOnSignup }) => {
+const Login = ({ setIsClickedOnSignup, setIsModalOpen }) => {
 	const initialUser = { email: "", password: "" };
 	const [user, setUser] = useState(initialUser);
 	const [error, setError] = useState(null);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [isSubmitted, setIsSubmitted] = useState(false);
-	const [isModalOpen, setIsModalOpen] = useState(false);
-
-	const openModal = () => setIsModalOpen(true);
-	const closeModal = () => setIsModalOpen(false);
 
 	const handleChange = e => {
 		const { name, value } = e.target;
@@ -54,12 +49,16 @@ const Login = ({ setIsClickedOnSignup }) => {
 
 			fetchUserCart(loggedInUser.id, jwt, dispatch);
 			fetchUserWishlist(loggedInUser.id, jwt, dispatch);
-			closeModal();
+			setIsModalOpen(false);
+			toast.success("Welcome back! You have successfully signed in.");
 			navigate("/");
 		} catch (err) {
 			setError(
 				err.response?.data?.error?.message ||
 					"Login failed. Please try again."
+			);
+			toast.error(
+				"Login failed. Please check your credentials and try again."
 			);
 		}
 	};
@@ -71,7 +70,6 @@ const Login = ({ setIsClickedOnSignup }) => {
 	};
 
 	const handleSignUp = () => {
-		openModal();
 		setIsClickedOnSignup(true);
 	};
 

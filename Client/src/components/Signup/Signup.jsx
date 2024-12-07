@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SignUp = ({ setIsClickedOnSignup }) => {
 	const initialUser = { username: "", email: "", password: "" };
@@ -37,14 +38,13 @@ const SignUp = ({ setIsClickedOnSignup }) => {
 			);
 
 			const { user: registeredUser, jwt } = response.data;
-			sessionStorage.setItem("user", JSON.stringify(response.data.user));
-			sessionStorage.setItem("jwt", response.data.jwt);
 
 			setUser(initialUser);
-			setSuccessMessage(
-				`Account created successfully! Welcome, ${registeredUser.username}!`
+			toast.success(
+				"You have successfully created an account. Welcome to ShopVista!"
 			);
-			console.log(jwt);
+
+			setIsClickedOnSignup(false);
 			setError(null);
 			navigate("/");
 		} catch (err) {
@@ -53,6 +53,7 @@ const SignUp = ({ setIsClickedOnSignup }) => {
 					"Registration failed. Please try again."
 			);
 			setSuccessMessage(null);
+			toast.error("Sign-up failed. Please try again.");
 		}
 	};
 

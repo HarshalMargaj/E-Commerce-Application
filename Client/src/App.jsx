@@ -15,6 +15,7 @@ import Footer from "./components/Footer/Footer";
 import Wishlist from "./components/Wishlist/Wishlist";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
+import { Toaster } from "react-hot-toast";
 
 const AppContent = () => {
 	const [cartItemsLength, setCartItemsLenght] = useState(1);
@@ -26,6 +27,7 @@ const AppContent = () => {
 
 	return (
 		<div>
+			<Toaster position="top-right" />
 			{!hideNavbarFooter && (
 				<Navbar
 					setCartItemsLenght={setCartItemsLenght}

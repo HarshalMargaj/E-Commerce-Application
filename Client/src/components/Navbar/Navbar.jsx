@@ -17,6 +17,7 @@ import { TbLogout } from "react-icons/tb";
 import CustomModal from "../Modal/Modal";
 import Login from "../Login/Login";
 import SignUp from "../Signup/Signup";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -42,6 +43,7 @@ const Navbar = () => {
 		dispatch(logoutUser());
 		dispatch(resetCart());
 		dispatch(resetWishlist());
+		toast.success("You have successfully logged out.");
 	};
 
 	const profileDropdown = (
@@ -162,7 +164,10 @@ const Navbar = () => {
 				title="Custom Modal Title"
 			>
 				{!isClickedOnSignup ? (
-					<Login setIsClickedOnSignup={setIsClickedOnSignup} />
+					<Login
+						setIsClickedOnSignup={setIsClickedOnSignup}
+						setIsModalOpen={setIsModalOpen}
+					/>
 				) : (
 					<SignUp setIsClickedOnSignup={setIsClickedOnSignup} />
 				)}
