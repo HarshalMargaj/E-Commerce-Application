@@ -10,8 +10,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { deleteCartItem } from "../../../api/api";
-import zIndex from "@mui/material/styles/zIndex";
+import { deleteCartItem, addProdToWishlist } from "../../../api/api";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 	"& .MuiBadge-badge": {
@@ -27,6 +26,7 @@ export default function CustomizedBadges() {
 	const products = useSelector(state => state.cart.products);
 	const jwt = sessionStorage.getItem("jwt");
 	const dispatch = useDispatch();
+	const user = useSelector(state => state.user.user);
 
 	const subtotal = () => {
 		let sum = 0;
@@ -86,7 +86,17 @@ export default function CustomizedBadges() {
 									>
 										<AiOutlineDelete color="red" />
 									</div>
-									<div className="flex items-center gap-[10px] text-[#2879fe]">
+									<div
+										className="flex items-center gap-[10px] text-[#2879fe] cursor-pointer"
+										onClick={() =>
+											addProdToWishlist(
+												user.id,
+												d.product_id,
+												jwt,
+												dispatch
+											)
+										}
+									>
 										<FaRegHeart />
 										Move to wishlist
 									</div>

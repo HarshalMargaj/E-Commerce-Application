@@ -79,9 +79,8 @@ const Navbar = () => {
 	const searchDropdown = (
 		<div className="absolute w-full bg-white shadow-md rounded-md max-h-[500px] z-10 p-2">
 			{searchFilter.map(product => (
-				<Link to={`/product/${product.id}`}>
+				<Link to={`/product/${product.id}`} key={product.id}>
 					<div
-						key={product.id}
 						onClick={() =>
 							setSearchQuery(product.attributes.product_name)
 						}
@@ -99,7 +98,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className="flex justify-between h-[75px] items-center border-b py-2 px-8">
+		<div className="flex justify-between h-[75px] items-center border-b py-2 px-[60px]">
 			<div className="flex items-center gap-5">
 				<Link to={"/"} className="text-[32px] text-[#2879fe]">
 					<div>ShopVista</div>

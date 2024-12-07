@@ -5,10 +5,11 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { deleteCartItem } from "../../api/api";
+import { deleteCartItem, addProdToWishlist } from "../../api/api";
 
 const Cart = () => {
 	const products = useSelector(state => state.cart.products);
+	const user = useSelector(state => state.user.user);
 	const dispatch = useDispatch();
 	const jwt = sessionStorage.getItem("jwt");
 
@@ -58,7 +59,17 @@ const Cart = () => {
 								>
 									<AiOutlineDelete color="red" />
 								</div>
-								<div className="flex items-center gap-2 text-[#2879fe] cursor-pointer">
+								<div
+									className="flex items-center gap-2 text-[#2879fe] cursor-pointer"
+									onClick={() =>
+										addProdToWishlist(
+											user.id,
+											d.product_id,
+											jwt,
+											dispatch
+										)
+									}
+								>
 									<FaRegHeart />
 									Move to wishlist
 								</div>

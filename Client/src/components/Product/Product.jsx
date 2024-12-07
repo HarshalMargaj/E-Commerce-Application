@@ -7,7 +7,6 @@ import useFetch from "../hooks/useFetch";
 const Product = ({ cartItemsLength }) => {
 	const pId = useParams().id;
 	const { data, isLoading, error } = useFetch(`/products/${pId}?populate=*`);
-	console.log("data from product", data);
 
 	if (isLoading) {
 		return <div>Loading...</div>;
@@ -24,11 +23,11 @@ const Product = ({ cartItemsLength }) => {
 	}
 
 	return (
-		<div className="flex w-full">
-			<div className="flex p-5 gap-4 w-[40%]">
+		<div className="flex w-full px-[60px] mt-[60px]">
+			<div className="flex  gap-4 w-[40%]">
 				<Left data={data} />
 			</div>
-			<div className="p-5 gap-5 flex flex-col w-[60%]">
+			<div className=" gap-5 flex flex-col w-[60%]">
 				<Right product={data} />
 			</div>
 		</div>
