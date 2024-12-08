@@ -21,6 +21,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "user_id": {
+      "type": "integer"
     }
   }
 }

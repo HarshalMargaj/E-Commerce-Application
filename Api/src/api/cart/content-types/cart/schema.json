@@ -24,6 +24,9 @@
     },
     "user_id": {
       "type": "integer"
+    },
+    "product_quantity": {
+      "type": "integer"
     }
   }
 }

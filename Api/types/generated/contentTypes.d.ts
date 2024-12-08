@@ -810,6 +810,7 @@ export interface ApiCartCart extends Schema.CollectionType {
       'api::product.product'
     >;
     user_id: Attribute.Integer;
+    product_quantity: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -974,6 +975,7 @@ export interface ApiWishlistWishlist extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    user_id: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
