@@ -16,7 +16,6 @@ const Cart = () => {
 	const subtotal = () => {
 		let sum = 0;
 		products.forEach(element => {
-			console.log(element.product_price);
 			sum += element.price;
 		});
 		return sum;

@@ -26,6 +26,7 @@ const Navbar = () => {
 	const dispatch = useDispatch();
 	const jwt = sessionStorage.getItem("jwt");
 	const [products, setProducts] = useState([]);
+	console.log(products);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isClickedOnSignup, setIsClickedOnSignup] = useState(false);
 
@@ -131,7 +132,10 @@ const Navbar = () => {
 				</div>
 			</ClickAwayListener>
 			<div className="flex items-center gap-5">
-				<Link to={"/wishlist"} className="text-black">
+				<Link
+					to={"/wishlist"}
+					className="text-black hover:bg-gray-100 rounded-full w-10 h-10 flex justify-center items-center"
+				>
 					<FaRegHeart />
 				</Link>
 
@@ -139,7 +143,12 @@ const Navbar = () => {
 
 				{!isLogin ? (
 					// <Link to={"/login"}>
-					<button onClick={openModal}>Login</button>
+					<button
+						onClick={openModal}
+						className="bg-blue-500 text-white h-8 rounded-md px-3"
+					>
+						Login
+					</button>
 				) : (
 					// </Link>
 					<Tippy

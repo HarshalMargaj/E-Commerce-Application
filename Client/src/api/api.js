@@ -7,56 +7,6 @@ import {
 } from "../Redux/cartSlice";
 import toast from "react-hot-toast";
 
-// export const addProdToCart = async (
-// 	jwt,
-// 	userId,
-// 	prodId,
-// 	navigate,
-// 	dispatch
-// ) => {
-// 	if (!jwt) {
-// 		navigate("/login");
-// 		return;
-// 	}
-
-// 	const data = {
-// 		data: {
-// 			user_id: userId,
-// 			user: userId,
-// 			products: prodId,
-// 		},
-// 	};
-
-// 	try {
-// 		const response = await axios.post(
-// 			`${
-// 				import.meta.env.VITE_API_URL
-// 			}/carts?[populate][products][populate]=*`,
-// 			data,
-// 			{
-// 				headers: {
-// 					Authorization: `Bearer ${jwt}`,
-// 				},
-// 			}
-// 		);
-// 		const cartId = response.data.data.id;
-// 		const Cartdata = response.data.data.attributes.products.data[0];
-// 		dispatch(
-// 			addToCart({
-// 				id: cartId,
-// 				product_id: Cartdata.id,
-// 				name: Cartdata.attributes.product_name,
-// 				price: Cartdata.attributes.product_price,
-// 				description: Cartdata.attributes.product_description,
-// 				image: Cartdata.attributes.product_image.data.attributes.url,
-// 			})
-// 		);
-// 		toast.success("Item added to cart successfully.");
-// 	} catch (error) {
-// 		toast.error("Failed to add item to cart. Please try again.");
-// 	}
-// };
-
 export const addProdToCart = async (
 	jwt,
 	userId,
@@ -200,7 +150,6 @@ export const addProdToWishlist = async (userId, productId, jwt, dispatch) => {
 				},
 			}
 		);
-		console.log(existingWishlistResponse.data);
 
 		const wishlists = existingWishlistResponse.data.data;
 
