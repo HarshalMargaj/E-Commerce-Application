@@ -26,7 +26,6 @@ const Navbar = () => {
 	const dispatch = useDispatch();
 	const jwt = sessionStorage.getItem("jwt");
 	const [products, setProducts] = useState([]);
-	console.log(products);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isClickedOnSignup, setIsClickedOnSignup] = useState(false);
 

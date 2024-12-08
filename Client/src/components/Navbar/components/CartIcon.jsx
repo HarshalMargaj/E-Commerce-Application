@@ -11,6 +11,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteCartItem, addProdToWishlist } from "../../../api/api";
+import { useState } from "react";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 	"& .MuiBadge-badge": {
@@ -28,12 +29,26 @@ export default function CustomizedBadges() {
 	const dispatch = useDispatch();
 	const user = useSelector(state => state.user.user);
 
+	const [quantities, setQuantities] = useState(
+		products.reduce((acc, product) => {
+			acc[product.id] = 1; // Default quantity is 1 for each product
+			return acc;
+		}, {})
+	);
+
+	// Function to handle quantity change
+	const handleQuantityChange = (id, newQuantity) => {
+		setQuantities(prev => ({
+			...prev,
+			[id]: newQuantity > 0 ? newQuantity : 1, // Prevent negative or zero quantity
+		}));
+	};
+
+	// Calculate subtotal dynamically
 	const subtotal = () => {
-		let sum = 0;
-		products?.forEach(element => {
-			sum += element.price;
-		});
-		return sum;
+		return products.reduce((sum, product) => {
+			return sum + product.price * (quantities[product.id] || 1);
+		}, 0);
 	};
 
 	const cartDropdownContent = (
@@ -51,16 +66,16 @@ export default function CustomizedBadges() {
 			</div>
 			<div className="overflow-y-scroll max-h-[500px]">
 				<div className="flex flex-col">
-					{products?.map(d => (
+					{products?.map(product => (
 						<div
 							className="border-y flex items-center p-5"
-							key={d.id}
+							key={product.id}
 						>
 							<div className="w-[30%]">
 								<img
 									src={
 										import.meta.env.VITE_UPLOAD_URL +
-										d.image
+										product.image
 									}
 									alt=""
 									className="w-[100px] h-[100px]"
@@ -68,20 +83,54 @@ export default function CustomizedBadges() {
 							</div>
 							<div className="flex flex-col gap-[10px] w-[70%]">
 								<div>
-									<h3>{d.name}</h3>
+									<h3>{product.name}</h3>
 									<div className="text-gray-400">
-										{d.description}
+										{product.description}
 									</div>
-									<div>${d.price}</div>
+									<div className="text-gray-600">
+										${product.price} x{" "}
+										{quantities[product.id]} ={" "}
+										<span className="text-[#2879fe]">
+											$
+											{product.price *
+												quantities[product.id]}
+										</span>
+									</div>
 								</div>
 								<div className="flex items-center gap-5">
-									<div>
-										<Quantity />
+									<div className="flex items-center gap-2">
+										<button
+											className="px-2 py-1 bg-gray-200 rounded"
+											onClick={() =>
+												handleQuantityChange(
+													product.id,
+													quantities[product.id] - 1
+												)
+											}
+										>
+											-
+										</button>
+										<span>{quantities[product.id]}</span>
+										<button
+											className="px-2 py-1 bg-gray-200 rounded"
+											onClick={() =>
+												handleQuantityChange(
+													product.id,
+													quantities[product.id] + 1
+												)
+											}
+										>
+											+
+										</button>
 									</div>
 									<div
 										className="flex items-center"
 										onClick={() =>
-											deleteCartItem(d.id, jwt, dispatch)
+											deleteCartItem(
+												product.id,
+												jwt,
+												dispatch
+											)
 										}
 									>
 										<AiOutlineDelete color="red" />
@@ -91,7 +140,7 @@ export default function CustomizedBadges() {
 										onClick={() =>
 											addProdToWishlist(
 												user.id,
-												d.product_id,
+												product.product_id,
 												jwt,
 												dispatch
 											)

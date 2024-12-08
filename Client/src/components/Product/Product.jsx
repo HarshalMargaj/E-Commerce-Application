@@ -4,7 +4,7 @@ import Right from "./components/Right";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
-const Product = ({ cartItemsLength }) => {
+const Product = () => {
 	const pId = useParams().id;
 	const { data, isLoading, error } = useFetch(`/products/${pId}?populate=*`);
 
