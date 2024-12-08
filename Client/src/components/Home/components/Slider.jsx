@@ -3,8 +3,8 @@ import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ImageOne from "../../../assets/3588607.jpg";
 import ImageTwo from "../../../assets/3609477.jpg";
-import ImageThree from "../../../assets/4028471.jpg";
-import ImageFour from "../../../assets/4028484.jpg";
+// import ImageThree from "../../../assets/4028471.jpg";
+// import ImageFour from "../../../assets/4028484.jpg";
 // import ImageFive from "../../../assets/imagefive.jpg";
 // Import Swiper styles
 import "swiper/css";
@@ -39,12 +39,12 @@ export default function App() {
 				<SwiperSlide>
 					<img src={ImageTwo} alt="" />
 				</SwiperSlide>
-				<SwiperSlide>
+				{/* <SwiperSlide>
 					<img src={ImageThree} alt="" />
 				</SwiperSlide>
 				<SwiperSlide>
 					<img src={ImageFour} alt="" />
-				</SwiperSlide>
+				</SwiperSlide> */}
 				{/* <SwiperSlide>
 					<img src={ImageFive} alt="" />
 				</SwiperSlide> */}
