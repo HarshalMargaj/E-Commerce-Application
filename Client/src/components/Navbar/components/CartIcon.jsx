@@ -5,7 +5,6 @@ import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Tippy from "@tippyjs/react";
 import { Link } from "react-router-dom";
-import Quantity from "../../Product/components/Quantity";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 import { useSelector } from "react-redux";
