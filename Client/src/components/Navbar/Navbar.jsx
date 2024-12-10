@@ -61,8 +61,8 @@ const Navbar = () => {
 	useEffect(() => {
 		const fetchProducts = async () => {
 			try {
-				const data = await allProducts(jwt);
-				setProducts(data.data);
+				const res = await allProducts(jwt);
+				setProducts(res.data);
 			} catch (error) {
 				console.error("Error fetching products:", error);
 			}
