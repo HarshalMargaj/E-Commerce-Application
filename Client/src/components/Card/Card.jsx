@@ -23,7 +23,7 @@ const Card = ({ product }) => {
 								?.url
 						}
 						alt=""
-						className="w-[300px] h-[300px]"
+						className="w-[300px] h-[400px]"
 					/>
 					<h3 className="text-gray-800 font-medium">
 						{product.attributes.product_name}
