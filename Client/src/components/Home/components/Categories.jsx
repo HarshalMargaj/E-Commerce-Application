@@ -16,8 +16,8 @@ export default function ImageMasonry() {
 							<img
 								src={
 									import.meta.env.VITE_UPLOAD_URL +
-									item.attributes.category_image.data
-										.attributes.url
+									item.attributes?.category_image?.data
+										?.attributes.url
 								}
 								alt={item.title}
 								loading="lazy"
