@@ -24,7 +24,7 @@ const List = ({
 	setResults(data.length);
 
 	return (
-		<div className="flex gap-5 flex-wrap justify-between">
+		<div className="flex gap-y-5 flex-wrap justify-between">
 			{data.map(l => (
 				<Card product={l} key={l.id} />
 			))}

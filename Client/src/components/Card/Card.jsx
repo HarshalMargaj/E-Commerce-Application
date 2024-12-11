@@ -28,7 +28,9 @@ const Card = ({ product }) => {
 					<h3 className="text-gray-800 font-medium">
 						{product.attributes.product_name}
 					</h3>
-					<p>{product.attributes.product_description}</p>
+					<p className="truncate">
+						{product.attributes.product_description}
+					</p>
 					<Rating rating={product.attributes.product_rating} />
 					<div>
 						{product.attributes.isLimitedTimeDeal ? (
