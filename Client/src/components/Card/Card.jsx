@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Rating from "../Product/components/Rating";
 import { FiShoppingCart } from "react-icons/fi";
@@ -11,20 +11,38 @@ const Card = ({ product }) => {
 	const navigate = useNavigate();
 	const jwt = sessionStorage.getItem("jwt");
 	const user = JSON.parse(sessionStorage.getItem("user"));
+	const [isHovering, setIsHovering] = useState(false);
 
 	return (
-		<div>
+		<div
+			onMouseEnter={() => setIsHovering(true)}
+			onMouseLeave={() => setIsHovering(false)}
+		>
 			<Link to={`/product/${product.id}`}>
 				<div className="flex flex-col gap-2 text-gray-500 w-[300px]">
-					<img
-						src={
-							import.meta.env.VITE_UPLOAD_URL +
-							product?.attributes?.product_image?.data?.attributes
-								?.url
-						}
-						alt=""
-						className="w-[300px] h-[400px]"
-					/>
+					<div className="transition duration-75">
+						{!isHovering ? (
+							<img
+								src={
+									import.meta.env.VITE_UPLOAD_URL +
+									product?.attributes?.product_image?.data
+										?.attributes?.url
+								}
+								alt=""
+								className="w-[300px] h-[400px]"
+							/>
+						) : (
+							<img
+								src={
+									import.meta.env.VITE_UPLOAD_URL +
+									product?.attributes?.product_image_2?.data
+										?.attributes?.url
+								}
+								alt=""
+								className="w-[300px] h-[400px]"
+							/>
+						)}
+					</div>
 					<h3 className="text-gray-800 font-medium">
 						{product.attributes.product_name}
 					</h3>
