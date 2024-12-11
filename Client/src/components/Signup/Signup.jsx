@@ -29,7 +29,7 @@ const SignUp = ({ setIsClickedOnSignup }) => {
 		if (!user.username || !user.email || !user.password) return;
 		try {
 			const response = await axios.post(
-				"http://localhost:1337/api/auth/local/register",
+				`${import.meta.env.VITE_API_URL}/auth/local/register`,
 				{
 					username: user.username,
 					email: user.email,

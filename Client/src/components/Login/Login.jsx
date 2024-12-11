@@ -32,7 +32,7 @@ const Login = ({ setIsClickedOnSignup, setIsModalOpen }) => {
 		if (!user.email || !user.password) return;
 		try {
 			const response = await axios.post(
-				"http://localhost:1337/api/auth/local",
+				`${import.meta.env.VITE_API_URL}/auth/local`,
 				{
 					identifier: user.email,
 					password: user.password,
