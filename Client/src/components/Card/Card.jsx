@@ -24,21 +24,37 @@ const Card = ({ product }) => {
 						{!isHovering ? (
 							<img
 								src={
-									import.meta.env.VITE_UPLOAD_URL +
-									product?.attributes?.product_image?.data
-										?.attributes?.url
+									product?.attributes?.product_image?.data?.attributes?.url.startsWith(
+										"http"
+									)
+										? product?.attributes?.product_image
+												?.data?.attributes?.url
+										: import.meta.env.VITE_UPLOAD_URL +
+										  product?.attributes?.product_image
+												?.data?.attributes?.url
 								}
-								alt=""
+								alt={
+									product?.attributes?.product_name ||
+									"Product Image"
+								}
 								className="w-[300px] h-[400px]"
 							/>
 						) : (
 							<img
 								src={
-									import.meta.env.VITE_UPLOAD_URL +
-									product?.attributes?.product_image_2?.data
-										?.attributes?.url
+									product?.attributes?.product_image?.data?.attributes?.url.startsWith(
+										"http"
+									)
+										? product?.attributes?.product_image_2
+												?.data?.attributes?.url
+										: import.meta.env.VITE_UPLOAD_URL +
+										  product?.attributes?.product_image_2
+												?.data?.attributes?.url
 								}
-								alt=""
+								alt={
+									product?.attributes?.product_name ||
+									"Product Image"
+								}
 								className="w-[300px] h-[400px]"
 							/>
 						)}

@@ -13,13 +13,30 @@ export default function ImageMasonry() {
 							to={`/products/${item.id}`}
 							className="text-gray-500"
 						>
-							<img
+							{/* <img
 								src={
 									import.meta.env.VITE_UPLOAD_URL +
 									item.attributes?.category_image?.data
 										?.attributes.url
 								}
 								alt={item.title}
+								loading="lazy"
+							/> */}
+							<img
+								src={
+									item?.attributes?.category_image?.data?.attributes?.url.startsWith(
+										"http"
+									)
+										? item?.attributes?.category_image?.data
+												?.attributes?.url
+										: import.meta.env.VITE_UPLOAD_URL +
+										  item?.attributes?.category_image?.data
+												?.attributes?.url
+								}
+								alt={
+									item?.attributes?.product_name ||
+									"Product Image"
+								}
 								loading="lazy"
 							/>
 						</Link>

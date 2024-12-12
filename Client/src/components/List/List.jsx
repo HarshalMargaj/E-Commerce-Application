@@ -22,6 +22,7 @@ const List = ({
 	);
 
 	setResults(data.length);
+	console.log(data);
 
 	return (
 		<div className="flex gap-y-5 flex-wrap justify-between">
