@@ -12,6 +12,7 @@ const Cart = () => {
 	const products = useSelector(state => state.cart.products);
 	console.log(products);
 	const user = useSelector(state => state.user.user);
+	console.log(user);
 	const dispatch = useDispatch();
 	const jwt = sessionStorage.getItem("jwt");
 	const [quantities, setQuantities] = useState(
@@ -27,6 +28,7 @@ const Cart = () => {
 			try {
 				const data = await allProducts(jwt);
 				setData(data.data);
+				console.log(user);
 			} catch (error) {
 				console.error("Error fetching products:", error);
 			}
@@ -93,10 +95,7 @@ const Cart = () => {
 					>
 						<div className="w-[15%]">
 							<img
-								src={
-									import.meta.env.VITE_UPLOAD_URL +
-									product.image
-								}
+								src={product.image}
 								alt=""
 								className="w-[100px] h-[100px]"
 							/>

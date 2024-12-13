@@ -12,6 +12,7 @@ const Wishlist = () => {
 	const jwt = sessionStorage.getItem("jwt");
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	console.log(wishlists);
 
 	return (
 		<div>
@@ -26,10 +27,7 @@ const Wishlist = () => {
 					<div className="relative flex flex-col gap-2" key={item.id}>
 						<div>
 							<img
-								src={
-									import.meta.env.VITE_UPLOAD_URL +
-									item.product_image
-								}
+								src={item.product_image}
 								alt=""
 								className="w-[300px] h-[300px]"
 							/>
@@ -54,7 +52,7 @@ const Wishlist = () => {
 									addProdToCart(
 										jwt,
 										user.id,
-										item.id,
+										item.product_id,
 										navigate,
 										dispatch
 									)

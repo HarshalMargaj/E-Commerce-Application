@@ -72,10 +72,7 @@ export default function CustomizedBadges() {
 						>
 							<div className="w-[30%]">
 								<img
-									src={
-										import.meta.env.VITE_UPLOAD_URL +
-										product.image
-									}
+									src={product.image}
 									alt=""
 									className="w-[100px] h-[100px]"
 								/>
