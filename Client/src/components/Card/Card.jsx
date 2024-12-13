@@ -5,6 +5,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { addProdToCart } from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import ButtonLoader from "../Loaders/ButtonLoader";
 
 const Card = ({ product }) => {
 	const dispatch = useDispatch();
