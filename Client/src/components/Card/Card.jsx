@@ -12,6 +12,7 @@ const Card = ({ product }) => {
 	const jwt = sessionStorage.getItem("jwt");
 	const user = JSON.parse(sessionStorage.getItem("user"));
 	const [isHovering, setIsHovering] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	return (
 		<div
@@ -98,11 +99,18 @@ const Card = ({ product }) => {
 							user.id,
 							product.id,
 							navigate,
-							dispatch
+							dispatch,
+							setIsLoading
 						)
 					}
 				>
-					<FiShoppingCart /> Add to cart
+					{isLoading ? (
+						<ButtonLoader color={"text-white"} />
+					) : (
+						<div className="flex items-center gap-2">
+							<FiShoppingCart /> Add to cart
+						</div>
+					)}
 				</button>
 			</div>
 		</div>
