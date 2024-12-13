@@ -4,6 +4,7 @@ import Right from "./components/Right";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Tippy from "@tippyjs/react";
+import Loader from "../Loaders/Loader";
 
 const Products = () => {
 	const [selectedSubcatsIds, setSelectedSubcatsIds] = useState([]);
@@ -17,6 +18,14 @@ const Products = () => {
 	const { data, isLoading, error } = useFetch(
 		`/sub-categories?[filters][categories][id][$eq]=${catId}`
 	);
+
+	if (isLoading) {
+		return (
+			<div className="flex items-center justify-center h-[90vh]">
+				<Loader />
+			</div>
+		);
+	}
 
 	const sortByOptions = [
 		{ id: 1, option: "Price: low to high", action: "asc" },

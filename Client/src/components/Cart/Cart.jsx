@@ -7,6 +7,7 @@ import { deleteCartItem, addProdToWishlist } from "../../api/api";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { allProducts } from "../../api/api";
+import ButtonLoader from "../Loaders/ButtonLoader";
 
 const Cart = () => {
 	const products = useSelector(state => state.cart.products);
@@ -22,6 +23,44 @@ const Cart = () => {
 		}, {})
 	);
 	const [data, setData] = useState();
+
+	const [delLoadingState, setDelLoadingState] = useState({});
+	const [wishLoadingState, setWishLoadingState] = useState({});
+
+	const handleAddToWishlist = async productId => {
+		// Set loading state for specific product
+		setWishLoadingState(prevState => ({ ...prevState, [productId]: true }));
+		try {
+			await addProdToWishlist(user.id, productId, jwt, dispatch, () => {
+				setWishLoadingState(prevState => ({
+					...prevState,
+					[productId]: false,
+				}));
+			});
+		} catch (error) {
+			setWishLoadingState(prevState => ({
+				...prevState,
+				[productId]: false,
+			}));
+		}
+	};
+
+	const handleDeleteItem = async productId => {
+		setDelLoadingState(prevState => ({ ...prevState, [productId]: true }));
+		try {
+			await deleteCartItem(productId, jwt, dispatch, () => {
+				setDelLoadingState(prevState => ({
+					...prevState,
+					[productId]: false,
+				}));
+			});
+		} catch (error) {
+			setDelLoadingState(prevState => ({
+				...prevState,
+				[productId]: false,
+			}));
+		}
+	};
 
 	useEffect(() => {
 		const fetchProducts = async () => {
@@ -143,29 +182,30 @@ const Cart = () => {
 								</div>
 								<div
 									className="flex items-center cursor-pointer"
-									onClick={() =>
-										deleteCartItem(
-											product.id,
-											jwt,
-											dispatch
-										)
-									}
+									onClick={() => handleDeleteItem(product.id)}
 								>
-									<AiOutlineDelete color="red" />
+									{delLoadingState[product.id] ? (
+										<ButtonLoader color={"text-red-500"} />
+									) : (
+										<AiOutlineDelete color="red" />
+									)}
 								</div>
 								<div
 									className="flex items-center gap-2 text-[#2879fe] cursor-pointer"
 									onClick={() =>
-										addProdToWishlist(
-											user.id,
-											product.product_id,
-											jwt,
-											dispatch
-										)
+										handleAddToWishlist(product.product_id)
 									}
 								>
-									<FaRegHeart />
-									Move to wishlist
+									<div className="flex items-center gap-2">
+										{wishLoadingState[product.id] && (
+											<ButtonLoader
+												color={"text-blue-500"}
+											/>
+										)}
+										<div className="flex items-center gap-2">
+											<FaRegHeart /> Move to wishlist
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

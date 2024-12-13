@@ -12,7 +12,8 @@ export const addProdToCart = async (
 	userId,
 	prodId,
 	navigate,
-	dispatch
+	dispatch,
+	setIsLoading
 ) => {
 	if (!jwt) {
 		navigate("/login");
@@ -20,6 +21,7 @@ export const addProdToCart = async (
 	}
 
 	try {
+		setIsLoading(true);
 		const existingCartResponse = await axios.get(
 			`${
 				import.meta.env.VITE_API_URL
@@ -75,15 +77,21 @@ export const addProdToCart = async (
 				image: Cartdata.attributes.product_image.data.attributes.url,
 			})
 		);
-
+		setIsLoading(false);
 		toast.success("Item added to cart successfully.");
 	} catch (error) {
+		setIsLoading(false);
 		console.error("Error details:", error.response?.data || error.message);
 		toast.error("Failed to add item to cart. Please try again.");
 	}
 };
 
-export const deleteCartItem = async (id, jwt, dispatch) => {
+export const deleteCartItem = async (
+	id,
+	jwt,
+	dispatch,
+	setProductLoadingState
+) => {
 	try {
 		if (!id) {
 			throw new Error("Cart item ID is required");
@@ -97,8 +105,10 @@ export const deleteCartItem = async (id, jwt, dispatch) => {
 			}
 		);
 		dispatch(removeProduct(id));
+		setProductLoadingState(false);
 		toast.success("Item removed from cart.");
 	} catch (error) {
+		setProductLoadingState(false);
 		toast.error("Failed to remove item from cart. Please try again.");
 	}
 };
@@ -138,7 +148,13 @@ export const fetchUserCart = async (userId, jwt, dispatch) => {
 	}
 };
 
-export const addProdToWishlist = async (userId, productId, jwt, dispatch) => {
+export const addProdToWishlist = async (
+	userId,
+	productId,
+	jwt,
+	dispatch,
+	setProductLoadingState
+) => {
 	try {
 		const existingWishlistResponse = await axios.get(
 			`${
@@ -196,8 +212,10 @@ export const addProdToWishlist = async (userId, productId, jwt, dispatch) => {
 					wishlistData.attributes.product_image.data.attributes.url,
 			})
 		);
+		setProductLoadingState(false);
 		toast.success("Item added to wishlist successfully.");
 	} catch (error) {
+		setProductLoadingState(false);
 		console.error("Error details:", error.response?.data || error.message);
 		toast.error("Failed to add item to wishlist. Please try again.");
 	}

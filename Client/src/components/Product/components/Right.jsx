@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Rating from "./Rating";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addProdToCart, addProdToWishlist } from "../../../api/api";
+import ButtonLoader from "../../Loaders/ButtonLoader";
 
 const Right = ({ product }) => {
 	const dispatch = useDispatch();
@@ -12,6 +13,8 @@ const Right = ({ product }) => {
 	const jwt = sessionStorage.getItem("jwt");
 	const user = JSON.parse(sessionStorage.getItem("user"));
 	console.log(product);
+	const [isLoading, setIsLoading] = useState(false);
+	const [isWishLoading, setIsWishLoading] = useState(false);
 
 	return (
 		<div className="p-5 flex flex-col gap-5 ">
@@ -41,27 +44,45 @@ const Right = ({ product }) => {
 
 			<div>
 				<button
-					className="bg-[#2879fe] text-white w-[200px] border-none py-2 px-3 rounded-md gap-1 flex items-center justify-center"
+					className="bg-[#2879fe] text-white w-[200px] border-none py-2 px-3 rounded-md gap-1 flex items-center justify-center h-10"
 					onClick={() =>
 						addProdToCart(
 							jwt,
 							user.id,
 							product.id,
 							navigate,
-							dispatch
+							dispatch,
+							setIsLoading
 						)
 					}
 				>
-					<FiShoppingCart /> Add to cart
+					{isLoading ? (
+						<ButtonLoader color={"text-white"} />
+					) : (
+						<div className="flex items-center gap-2">
+							<FiShoppingCart /> Add to cart
+						</div>
+					)}
 				</button>
 			</div>
 			<div
 				className="text-[#2879fe] flex items-center gap-2 cursor-pointer"
 				onClick={() =>
-					addProdToWishlist(user.id, product.id, jwt, dispatch)
+					addProdToWishlist(
+						user.id,
+						product.id,
+						jwt,
+						dispatch,
+						setIsWishLoading
+					)
 				}
 			>
-				<FaRegHeart /> Add to wishlist
+				<div className="flex items-center gap-2">
+					{isWishLoading && <ButtonLoader color={"text-blue-500"} />}
+					<div className="flex items-center gap-2">
+						<FaRegHeart /> Add to wishlist
+					</div>
+				</div>
 			</div>
 			<div className="text-gray-400">
 				<div>Vender : Polo</div>

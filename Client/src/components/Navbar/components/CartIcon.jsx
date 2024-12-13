@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteCartItem, addProdToWishlist } from "../../../api/api";
 import { useState } from "react";
+import ButtonLoader from "../../Loaders/ButtonLoader";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 	"& .MuiBadge-badge": {
@@ -27,6 +28,8 @@ export default function CustomizedBadges() {
 	const jwt = sessionStorage.getItem("jwt");
 	const dispatch = useDispatch();
 	const user = useSelector(state => state.user.user);
+	const [isDelLoading, setIsDelLoading] = useState(false);
+	const [isWishLoading, setIsWishLoading] = useState(false);
 
 	const [quantities, setQuantities] = useState(
 		products.reduce((acc, product) => {
@@ -125,11 +128,18 @@ export default function CustomizedBadges() {
 											deleteCartItem(
 												product.id,
 												jwt,
-												dispatch
+												dispatch,
+												setIsDelLoading
 											)
 										}
 									>
-										<AiOutlineDelete color="red" />
+										{isDelLoading ? (
+											<ButtonLoader
+												color={"text-red-500"}
+											/>
+										) : (
+											<AiOutlineDelete color="red" />
+										)}
 									</div>
 									<div
 										className="flex items-center gap-[10px] text-[#2879fe] cursor-pointer"
@@ -138,12 +148,21 @@ export default function CustomizedBadges() {
 												user.id,
 												product.product_id,
 												jwt,
-												dispatch
+												dispatch,
+												setIsWishLoading
 											)
 										}
 									>
-										<FaRegHeart />
-										Move to wishlist
+										<div className="flex items-center gap-2">
+											{isWishLoading && (
+												<ButtonLoader
+													color={"text-blue-500"}
+												/>
+											)}
+											<div className="flex items-center gap-2">
+												<FaRegHeart /> Move to wishlist
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>

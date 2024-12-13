@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../../Card/Card";
 import useFetch from "../../hooks/useFetch";
+import Loader from "../../Loaders/Loader";
 
 const FeaturedProducts = ({ type }) => {
 	const { data, isLoading, error } = useFetch(

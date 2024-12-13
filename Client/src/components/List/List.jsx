@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../Card/Card";
 import useFetch from "../hooks/useFetch";
+import Loader from "../Loaders/Loader";
 
 const List = ({
 	catId,
@@ -20,6 +21,14 @@ const List = ({
 		)}&[filters][product_price][$lte]=${maxPrice}${sortQuery}${typeQuery}
 		`
 	);
+
+	if (isLoading) {
+		return (
+			<div className="flex items-center justify-center h-[80vh]">
+				<Loader />
+			</div>
+		);
+	}
 
 	setResults(data.length);
 	console.log(data);

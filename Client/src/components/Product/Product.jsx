@@ -3,13 +3,18 @@ import Left from "./components/Left";
 import Right from "./components/Right";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import Loader from "../Loaders/Loader";
 
 const Product = () => {
 	const pId = useParams().id;
 	const { data, isLoading, error } = useFetch(`/products/${pId}?populate=*`);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return (
+			<div className="flex items-center justify-center h-[90vh]">
+				<Loader />
+			</div>
+		);
 	}
 
 	if (error) {
