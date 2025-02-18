@@ -12,7 +12,6 @@ const Right = ({ product }) => {
 	const navigate = useNavigate();
 	const jwt = sessionStorage.getItem("jwt");
 	const user = JSON.parse(sessionStorage.getItem("user"));
-	console.log(product);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isWishLoading, setIsWishLoading] = useState(false);
 

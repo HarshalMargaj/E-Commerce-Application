@@ -28,6 +28,7 @@ const Navbar = () => {
 	const [products, setProducts] = useState([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isClickedOnSignup, setIsClickedOnSignup] = useState(false);
+	console.log(products);
 
 	const openModal = () => setIsModalOpen(true);
 	const closeModal = () => setIsModalOpen(false);
@@ -61,7 +62,8 @@ const Navbar = () => {
 	useEffect(() => {
 		const fetchProducts = async () => {
 			try {
-				const res = await allProducts(jwt);
+				const res = await allProducts();
+				console.log(res);
 				setProducts(res.data);
 			} catch (error) {
 				console.error("Error fetching products:", error);
