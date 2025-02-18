@@ -89,7 +89,7 @@ const Left = ({
 	}));
 	return (
 		<div className="text-sm flex flex-col gap-5 sticky top-[20px]">
-			<div className="flex flex-col gap-1">
+			<div className="flex flex-wrap md:flex-col gap-1">
 				<h2 className="text-md font-medium">Categories</h2>
 				{data.map(label => (
 					<div className="flex items-center gap-2" key={label.id}>

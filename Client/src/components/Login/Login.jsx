@@ -119,7 +119,7 @@ const Login = ({ setIsClickedOnSignup, setIsModalOpen }) => {
 				Sign in
 			</button>
 
-			<div className="flex items-center gap-2">
+			<div className="md:flex-row flex-col text-center items-center gap-2">
 				Dont have an account?
 				{/* <Link to={"/signup"}> */}
 				<button className="text-blue-500" onClick={handleSignUp}>

@@ -7,8 +7,8 @@ import paypal from "../../assets/social.png";
 
 const Footer = () => {
 	return (
-		<div className="p-[60px] flex flex-col gap-10">
-			<div className="flex justify-between gap-[100px]">
+		<div className="md:p-[60px] px-5 flex flex-col gap-10">
+			<div className="md:flex-row flex-col flex justify-between gap-10 md:gap-20">
 				<div className="flex flex-col gap-5">
 					<h3>Categories</h3>
 					<ul className="flex flex-col gap-2 text-sm text-gray-400">
@@ -18,7 +18,7 @@ const Footer = () => {
 						<li>Accessories</li>
 					</ul>
 				</div>
-				<div className="flex flex-col gap-5">
+				<div className="flex flex-col gap-5 ">
 					<h3>Links</h3>
 					<ul className="flex flex-col gap-2 text-sm text-gray-400">
 						<li>Home</li>
@@ -47,8 +47,9 @@ const Footer = () => {
 					</p>
 				</div>
 			</div>
-			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-2">
+
+			<div className="flex-wrap flex items-center md:justify-between justify-center">
+				<div className="flex-wrap flex items-center gap-2 justify-center">
 					<div className="text-3xl text-[#2879fe]">ShopVista</div>
 					<div>© 2024 ShopVista. All rights reserved.</div>
 				</div>

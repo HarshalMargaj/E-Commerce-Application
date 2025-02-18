@@ -28,11 +28,11 @@ const Product = () => {
 	}
 
 	return (
-		<div className="flex w-full px-[60px] mt-[60px]">
-			<div className="flex  gap-4 w-[40%]">
+		<div className="flex-col w-full md:px-[60px] mt-[60px] md:flex-row flex">
+			<div className="md:w-[40%] w-full">
 				<Left data={data} />
 			</div>
-			<div className=" gap-5 flex flex-col w-[60%]">
+			<div className="  md:w-[60%] w-full">
 				<Right product={data} />
 			</div>
 		</div>

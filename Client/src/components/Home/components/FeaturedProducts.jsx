@@ -10,7 +10,7 @@ const FeaturedProducts = ({ type }) => {
 
 	return (
 		<div className="p-[60px] text-sm flex flex-col gap-10">
-			<div className="flex">
+			<div className="flex-row md:flex">
 				<h2 className="w-[40%] text-blue-400 capitalize text-4xl">
 					{type} Products
 				</h2>
@@ -22,11 +22,20 @@ const FeaturedProducts = ({ type }) => {
 					featured products offer something special for everyone.
 				</p>
 			</div>
-			<div className="flex gap-5 justify-between">
-				{data.map(product => (
-					<Card product={product} key={product.id} />
-				))}
-			</div>
+
+			{isLoading ? (
+				<Loader />
+			) : error ? (
+				<p className="text-red-500">
+					Failed to load products. Please try again.
+				</p>
+			) : (
+				<div className="flex gap-5 justify-between flex-wrap">
+					{data.map(product => (
+						<Card product={product} key={product.id} />
+					))}
+				</div>
+			)}
 		</div>
 	);
 };

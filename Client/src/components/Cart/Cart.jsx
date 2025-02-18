@@ -125,14 +125,14 @@ const Cart = () => {
 	};
 
 	return (
-		<div className="p-10 flex justify-between">
-			<div className="w-[60%]">
+		<div className="md:p-10 p-5 flex-col flex gap-6 justify-between md:flex-row">
+			<div className="md:w-[60%] w-full">
 				{products.map(product => (
 					<div
-						className="border-y flex gap-5 items-center p-5"
+						className="border-y flex gap-5 items-center md:p-5 py-5"
 						key={product.id}
 					>
-						<div className="w-[15%]">
+						<div className="md:w-[15%] w-[25%]">
 							<img
 								src={product.image}
 								alt=""
@@ -142,10 +142,10 @@ const Cart = () => {
 						<div className="flex flex-col gap-2 w-[85%]">
 							<div>
 								<h3>{product.name}</h3>
-								<div className="text-gray-400">
+								<div className="hidden md:block text-gray-400 md:text-md text-sm ">
 									{product.description}
 								</div>
-								<div className="text-gray-600">
+								<div className="text-gray-600 md:text-md text-sm">
 									${product.price} x {quantities[product.id]}{" "}
 									={" "}
 									<span className="text-[#2879fe]">
@@ -157,7 +157,7 @@ const Cart = () => {
 							<div className="flex items-center gap-5">
 								<div className="flex items-center gap-2">
 									<button
-										className="px-2 py-1 bg-gray-200 rounded"
+										className="md:px-2 md:py-1 px-1 bg-gray-200 rounded"
 										onClick={() =>
 											handleQuantityChange(
 												product.id,
@@ -169,7 +169,7 @@ const Cart = () => {
 									</button>
 									<span>{quantities[product.id]}</span>
 									<button
-										className="px-2 py-1 bg-gray-200 rounded"
+										className="md:px-2 md:py-1 px-1 bg-gray-200 rounded"
 										onClick={() =>
 											handleQuantityChange(
 												product.id,
@@ -202,7 +202,7 @@ const Cart = () => {
 												color={"text-blue-500"}
 											/>
 										)}
-										<div className="flex items-center gap-2">
+										<div className="flex items-center gap-2 md:text-md text-sm">
 											<FaRegHeart /> Move to wishlist
 										</div>
 									</div>
@@ -212,7 +212,7 @@ const Cart = () => {
 					</div>
 				))}
 			</div>
-			<div className="w-[40%] flex justify-center items-start">
+			<div className=" w-full md:w-[40%] flex justify-center items-start">
 				<div className="max-h-[300px] w-[300px] shadow-md rounded">
 					<div>
 						<div className="py-2 px-3 text-2xl">Payment</div>

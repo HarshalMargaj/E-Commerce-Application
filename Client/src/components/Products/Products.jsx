@@ -58,7 +58,7 @@ const Products = () => {
 	);
 	return (
 		<div>
-			<div className="py-5 px-10 border-b flex justify-between items-center h-5">
+			<div className="py-5 px-5 md:px-10 border-b flex justify-between items-center h-5">
 				<div>Results : {results}</div>
 
 				<div className="flex justify-between items-center gap-2">
@@ -75,8 +75,8 @@ const Products = () => {
 					</Tippy>
 				</div>
 			</div>
-			<div className="flex p-10">
-				<div className="w-[20%] border-r p-5">
+			<div className="flex md:flex-row flex-col md:p-10 p-5">
+				<div className="md:w-[20%] md:border-r md:p-5">
 					<Left
 						catId={catId}
 						data={data}
