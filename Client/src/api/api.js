@@ -96,14 +96,14 @@ export const deleteCartItem = async (
 		if (!id) {
 			throw new Error("Cart item ID is required");
 		}
-		const response = await axios.delete(
-			`${import.meta.env.VITE_API_URL}/carts/${id}`,
-			{
-				headers: {
-					Authorization: `Bearer ${jwt}`,
-				},
-			}
-		);
+		// const response = await axios.delete(
+		// 	`${import.meta.env.VITE_API_URL}/carts/${id}`,
+		// 	{
+		// 		headers: {
+		// 			Authorization: `Bearer ${jwt}`,
+		// 		},
+		// 	}
+		// );
 		dispatch(removeProduct(id));
 		setProductLoadingState(false);
 		toast.success("Item removed from cart.");
@@ -226,14 +226,14 @@ export const deleteWishlistProd = async (id, jwt, dispatch) => {
 		if (!id) {
 			throw new Error("Cart item ID is required");
 		}
-		const response = await axios.delete(
-			`${import.meta.env.VITE_API_URL}/wishlists/${id}`,
-			{
-				headers: {
-					Authorization: `Bearer ${jwt}`,
-				},
-			}
-		);
+		// const response = await axios.delete(
+		// 	`${import.meta.env.VITE_API_URL}/wishlists/${id}`,
+		// 	{
+		// 		headers: {
+		// 			Authorization: `Bearer ${jwt}`,
+		// 		},
+		// 	}
+		// );
 
 		dispatch(removeWishlist(id));
 		toast.success("Item removed from wishlist.");
