@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Left from "./components/Left";
 import Right from "./components/Right";
 import { useParams } from "react-router-dom";
@@ -12,10 +12,10 @@ const Products = () => {
 	const [sort, setSort] = useState(null);
 	const [value, setValue] = useState("--");
 	const [type, setType] = useState(null);
-	const [remove, setRemove] = useState();
+	const [remove] = useState();
 	const [results, setResults] = useState();
 	const catId = parseInt(useParams().id);
-	const { data, isLoading, error } = useFetch(
+	const { data, isLoading } = useFetch(
 		`/sub-categories?[filters][categories][id][$eq]=${catId}`
 	);
 

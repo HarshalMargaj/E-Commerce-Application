@@ -278,15 +278,10 @@ export const fetchUserWishlist = async (userId, jwt, dispatch) => {
 	}
 };
 
-export const allProducts = async jwt => {
+export const allProducts = async () => {
 	try {
 		const response = await axios.get(
-			`${import.meta.env.VITE_API_URL}/products?populate=*`,
-			{
-				headers: {
-					Authorization: `Bearer ${jwt}`,
-				},
-			}
+			`${import.meta.env.VITE_API_URL}/products?populate=*`
 		);
 		return response.data;
 	} catch (error) {
