@@ -88,7 +88,7 @@ const Products = () => {
 						setSort={setSort}
 					/>
 				</div>
-				<div className="w-[80%] p-5">
+				<div className="w-full p-5">
 					<Right
 						catId={catId}
 						selectedSubcatsIds={selectedSubcatsIds}

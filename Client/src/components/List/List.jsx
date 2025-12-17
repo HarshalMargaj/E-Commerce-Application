@@ -34,7 +34,7 @@ const List = ({
 	console.log(data);
 
 	return (
-		<div className="grid grid-cols-3 gap-5 justify-items-center ">
+		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center">
 			{data.map(l => (
 				<Card product={l} key={l.id} />
 			))}

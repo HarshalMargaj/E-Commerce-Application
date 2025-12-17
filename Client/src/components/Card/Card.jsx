@@ -21,7 +21,7 @@ const Card = ({ product }) => {
 			onMouseLeave={() => setIsHovering(false)}
 		>
 			<Link to={`/product/${product.id}`}>
-				<div className="flex flex-col gap-2 text-gray-500 w-[300px]">
+				<div className="flex flex-col gap-2 text-gray-500 md:w-[250px] lg:w-[300px] w-[300px]">
 					<div className="transition duration-75">
 						{!isHovering ? (
 							<img
