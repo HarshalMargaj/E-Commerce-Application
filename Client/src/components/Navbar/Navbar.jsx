@@ -128,11 +128,7 @@ const Navbar = () => {
 							value={searchQuery}
 						/>
 					</div>
-					{searchQuery && (
-						<div className="border border-neutral-600">
-							searching products {searchDropdown}
-						</div>
-					)}
+					{searchQuery && <div>{searchDropdown}</div>}
 				</div>
 			</ClickAwayListener>
 
